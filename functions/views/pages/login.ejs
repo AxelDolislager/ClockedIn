@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../public/css/style.css">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-xyMU7RufUdPGVOZRrc2z2nRWVWBONzqa0NFctWglHmt5q5ukL22+lvHAqhqsIm3h" crossorigin="anonymous">
-    </head>
+    <% include ../partials/head %>
     <body class="startbackground">
         <div class="wrapper">
-        <img class="logo" src="../public/images/logo.svg" alt="ProjectManagerApp">
-        <form id="login_form">
+        <img class="logo" src="./images/logo.svg" alt="ProjectManagerApp">
+        <form id="login_form" method="POST">
             <div class="form_box">
                 <input type="email" placeholder="Email" name="login_email">
                 <hr>
@@ -19,7 +14,7 @@
         <button type="submit" form="login_form" value="sign in">Sign in</button>
         </div>
         <div class="bottomaction">
-            <a href="./register.html">
+            <a href="./register">
                 <p>New on <b>ProjectManagerApp</b>?<br>
                 Create a new account here!</p>
                 <i class="fal fa-angle-right fa-3x"></i>

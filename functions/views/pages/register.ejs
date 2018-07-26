@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../public/css/style.css">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-xyMU7RufUdPGVOZRrc2z2nRWVWBONzqa0NFctWglHmt5q5ukL22+lvHAqhqsIm3h" crossorigin="anonymous">
-    </head>
+    <% include ../partials/head %>
     <body class="startbackground">
         <div class="wrapper">
-            <img class="logo" src="../public/images/logo.svg" alt="ProjectManagerApp">
-            <form id="register_form">
+            <img class="logo" src="./images/logo.svg" alt="ProjectManagerApp">
+            <form id="register_form" method="POST">
                 <div class="form_box">
                     <input type="email" placeholder="Email" name="register_email">
                     <hr>
@@ -18,15 +13,15 @@
                     <input type="text" class="user_input" placeholder="Last name" name="register_lastname">
                 </div>
                 <div class="form_box">
-                    <input type="password" placeholder="Password" name="login_password">
+                    <input type="password" placeholder="Password" name="register_password">
                     <hr>
-                    <input type="password" placeholder="Repeat password" name="login_repassword">
+                    <input type="password" placeholder="Repeat password" name="register_repassword">
                 </div>
             </form>
             <button type="submit" form="register_form" value="register">Register</button>
         </div>
         <div class="bottomaction">
-            <a href="./login.html">
+            <a href="./login">
                 <i class="fal fa-angle-left fa-3x"></i>
                 <p class="align-right">Already have an account on<br>
                 <b>ProjectManagerApp</b>? Click here!</p>

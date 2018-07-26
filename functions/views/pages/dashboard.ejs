@@ -1,10 +1,5 @@
 <html>
-    <head>
-        <title></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../public/css/style.css">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-xyMU7RufUdPGVOZRrc2z2nRWVWBONzqa0NFctWglHmt5q5ukL22+lvHAqhqsIm3h" crossorigin="anonymous">
-    </head>
+    <% include ../partials/head %>
     <body>
         <header class="dashboard_header">
             <small>Total time spend</small>
@@ -18,7 +13,7 @@
                 <span class="dashboard_last-timing-content">00H00M00S</span>
             </small>
             <div class="dashboard_project-add">
-                <a href="add_project.html"><i class="fa fa-plus fa-2x"></i></a>
+                <a href="/createproject"><i class="fa fa-plus fa-2x"></i></a>
             </div>
         </header>
         <main class="dashboard_project-list">
