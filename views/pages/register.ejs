@@ -28,36 +28,5 @@
             </a>
         </div>
         <% include ../partials/footer %>
-        <script>
-            $('form#register_form').submit(function(e){
-                e.preventDefault();
-
-                if($("input[name=register_password]").val() == $("input[name=register_repassword]").val()){
-                    var email = $("input[name=register_email]").val();
-                    var password = $("input[name=register_password]").val();
-                    var displayName = $("input[name=register_firstname]").val() + " " + $("input[name=register_lastname]").val();
-                    
-                    console.log("Login attempt!");
-                    firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then(function(data){
-                        firebase.auth().updateProfile({
-                            displayName: displayName,
-                        }).then(function() {
-                            window.location = "/dashboard";
-                        }).catch(function(error) {
-                            console.log(error);
-                        });
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                    });
-                }
-            });
-            firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
-                    window.location = "/dashboard";
-                }
-            });
-        </script>
     </body>
 </html>

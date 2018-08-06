@@ -18,7 +18,7 @@
         </header>
         <main class="dashboard_project-list">
             <ul>
-                <li>
+                <!-- <li>
                     <a href="#">
                         <p>Projectname</p>
                         <small class="dashboard_project-timing">
@@ -40,16 +40,9 @@
                 </li>
                 <li class="no_projects">
                     <p>You don't have any project setup yet. Please click the '+' button to create your first project!</p>
-                </li>
+                </li> -->
             </ul>
         </main>
         <% include ../partials/footer %>
-        <script>
-            firebase.auth().onAuthStateChanged(function(user) {
-                if (!user) {
-                    window.location = "/login";
-                }
-            });
-        </script>
     </body>
 </html>
