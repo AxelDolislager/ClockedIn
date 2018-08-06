@@ -2,6 +2,8 @@
     <% include ../partials/head %>
     <body>
         <header class="dashboard_header">
+            <a href="/dashboard" class="back-arrow"><i class="fa fa-angle-left fa-2x back-arrow"></i></a>
+            <h2>Projectname</h2>
             <small>Total time spend</small>
             <div class="dashboard_timing">
                 <span class="numbers">298</span><span class="text">days</span>
@@ -12,37 +14,34 @@
                 last input: 
                 <span class="dashboard_last-timing-content">00H00M00S</span>
             </small>
-            <div class="dashboard_project-add">
-                <a href="/createproject"><i class="fa fa-plus fa-2x"></i></a>
+            <div class="dashboard_time-start">
+                    <a href="#"><i class="fa fa-clock fa-2x"></i></a>
+                </div>
+            <div class="dashboard_time-add">
+                <a href="/addtiming"><i class="fa fa-plus fa-2x"></i></a>
             </div>
         </header>
         <main class="output-list">
             <ul>
-                <!-- <li>
+                <li>
                     <a href="#">
-                        <p>Projectname</p>
+                        <p>Date(or description) <i class="fa fa-pencil edit-icon"></i></p>
                         <small class="dashboard_project-timing">
-                            <span class="numbers">4</span><span class="text">days</span>
-                            <span class="numbers">10</span><span class="text">hours</span>
+                            <span class="numbers">01</span><span class="text">hours</span>
                             <span class="numbers">07</span><span class="text">minutes</span>
                         </small>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <p>Projectname</p>
+                        <p>Date(or description)</i></p>
                         <small class="dashboard_project-timing">
-                            <span class="numbers">4</span><span class="text">days</span>
-                            <span class="numbers">10</span><span class="text">hours</span>
-                            <span class="numbers">07</span><span class="text">minutes</span>
+                            <span class="numbers">04</span><span class="text">hours</span>
+                            <span class="numbers">29</span><span class="text">minutes</span>
                         </small>
                     </a>
                 </li>
-                <li class="no_projects">
-                    <p>You don't have any project setup yet. Please click the '+' button to create your first project!</p>
-                </li> -->
             </ul>
         </main>
-        <% include ../partials/footer %>
     </body>
 </html>

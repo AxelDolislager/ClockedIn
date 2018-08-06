@@ -21,4 +21,12 @@ module.exports = function(app) {
     app.get('/createproject', function(req, res){
         res.render('pages/add_project')
     })
+
+    app.get('/project', function(req, res){
+        res.render('pages/project')
+    })
+
+    app.get('/addtiming', function(req, res){
+        res.render('pages/add_timing')
+    })
 }
