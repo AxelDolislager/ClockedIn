@@ -4,16 +4,22 @@
 *{margin: 0px;box-sizing: border-box;}
 body{background-color: #D4D4D4;font-family: 'Source Sans Pro', sans-serif;}
 
-.back-arrow{color: #E57A78;text-shadow: 0 1px 5px #000000;position: absolute;left: 0;top: 0;width: 50px;height: 50px;text-align: center;}
+.back-arrow{color: #E57A78;text-shadow: 0 1px 5px #000000;position: absolute;left: 0;top: 0;width: 150px;height: 150px;text-align: center;}
 .back-arrow:hover{background-color: rgba(255,255,255,0.5);}
-.back-arrow i{margin: auto;font-size: 2rem;line-height: 50px;}
+.back-arrow i{margin: auto;font-size: 5rem;line-height: 150px;}
+.action-button{position: absolute;width: 150px;height: 150px;display: flex;cursor: pointer;}
+.action-button:hover{background-color: rgba(255,255,255,0.3);}
+.action-button a{margin: auto;display: block;color: white;}
+.action-button a i{font-size: 5rem;}
+.action-button.bottom-left{bottom: 0;left: 0;}
+.action-button.bottom-right{bottom: 0;right: 0;}
 
 /* Login & Register pages */
 .startbackground{background-image: url("../images/background.png");background-repeat: no-repeat;background-attachment: fixed;background-position: center;background-size: cover;}
 
 .startbackground{width: 100vw;height: 100vh;}
 .startbackground .wrapper{width: 300px;height: calc(100vh - 60px);margin: auto;display: flex;flex-wrap: wrap;}
-.startbackground.logo{display: block;width: 100%;margin: auto;}
+.startbackground .logo{display: block;width: 100%;margin: auto;}
 .startbackground form{width: 100%;margin: auto;margin-bottom: 0px;}
 .startbackground .form_box{margin: auto;margin-bottom: 20px;width: 100%;background-color: rgba(255,255,255,0.2);border-radius: 7px;border: 1px solid #BFBFBF;box-shadow: 0 3px 6px #BFBFBF;}
 .startbackground input{width: 100%;height: 60px;border: none;font-family: 'Source Sans Pro', sans-serif;}
@@ -32,18 +38,14 @@ body{background-color: #D4D4D4;font-family: 'Source Sans Pro', sans-serif;}
 .startbackground .bottomaction a i{width: 20px;margin: auto 10px;}
 
 /* Dashboard page */
-.dashboard_header{width: 100%;height: 100vh;position: relative;top: 0;background-color: #E57A78;box-shadow: 0 3px 6px #BFBFBF;z-index: 2;display: flex;flex-wrap: wrap;color: #FFFFFF;padding: 120px 100px 30px 150px;}
+.dashboard_header{width: 100%;height: 100vh;position: relative;top: 0;background-color: #E57A78;box-shadow: 0 3px 6px #BFBFBF;z-index: 2;display: flex;flex-wrap: wrap;color: #FFFFFF;padding: 200px 100px 30px 150px;}
 .dashboard_header::after{content: "";position: absolute;top: 0;left: 0; bottom: 0;right: 0;background: url("../images/dashboard_background.svg");background-repeat: no-repeat;background-size: cover;opacity: 0.1; z-index: -1;}
-.dashboard_header small{font-weight: 300;font-size: 3rem;}
-.dashboard_header .dashboard_timing{margin: auto;text-shadow: 0 3px 15px #000000;width: 100%;margin-top: -100px;}
+.dashboard_header small{text-align: center;width: 100%;font-weight: 300;font-size: 3rem;margin-bottom: -20px;}
+.dashboard_header .dashboard_timing{margin: auto;text-align: center;text-shadow: 0 3px 15px #000000;width: 100%;margin-top: -150px;}
 .dashboard_header .dashboard_timing .numbers{font-size: 9rem;}
 .dashboard_header .dashboard_timing .text{font-size: 5rem;font-weight: 300;}
 .dashboard_header .dashboard_last-timing{margin: auto;margin-top: 5px;}
 .dashboard_header .dashboard_last-timing .dashboard_last-timing-content{font-weight: 400;}
-.dashboard_header .dashboard_project-add{position: absolute;bottom: 0;right: 0;width: 150px;height: 150px;display: flex;}
-.dashboard_header .dashboard_project-add a{margin: auto;display: block;color: white;}
-.dashboard_header .dashboard_project-add a i{font-size: 5rem;}
-.dashboard_header .dashboard_project-add:hover{background-color: rgba(255,255,255,0.3);}
 
 .output-list{width: 100%;position: relative;}
 .output-list ul{list-style: none;padding: 0;display: flex;}
@@ -51,7 +53,7 @@ body{background-color: #D4D4D4;font-family: 'Source Sans Pro', sans-serif;}
 .output-list ul li a{color: #000000;text-decoration: none;}
 .output-list ul li a p{font-size: 1.2rem;margin-bottom: 20px;}
 
-/* Add porject page */
+/* Add project page */
 .new_project{background-color: #E57A78;height: 100vh;width: 100vw;display: flex;flex-wrap: nowrap;}
 .new_project form{margin: auto;width: 300px;}
 .new_project form input[type=text]{border: none;border-bottom: 1px solid #FFFFFF;background-color: rgba(0,0,0,0);font-family: 'Source Sans Pro', sans-serif;font-size: 1.3rem;font-weight: 300;padding-bottom: 5px;width: 85%;}
@@ -60,33 +62,34 @@ body{background-color: #D4D4D4;font-family: 'Source Sans Pro', sans-serif;}
 .new_project form button i{color: white;font-size: 2.3rem;text-shadow: 0 1px 5px #000000;}
 
 /* Project page */
-.dashboard_header h2{text-align: center;width: 100%;margin: auto;margin-top: -20px;margin-bottom: 5px;}
-.dashboard_header .dashboard_time-start{position: absolute;bottom: 0;left: 0;width: 150px;height: 150px;display: flex;}
-.dashboard_header .dashboard_time-start a{margin: auto;display: block;color: white;}
-.dashboard_header .dashboard_time-start a i{font-size: 5rem;}
-.dashboard_header .dashboard_time-start:hover{background-color: rgba(255,255,255,0.3);}
-.dashboard_header .dashboard_time-add{position: absolute;bottom: 0;right: 0;width: 150px;height: 150px;display: flex;}
-.dashboard_header .dashboard_time-add a{margin: auto;display: block;color: white;}
-.dashboard_header .dashboard_time-add a i{font-size: 5rem;}
-.dashboard_header .dashboard_time-add:hover{background-color: rgba(255,255,255,0.3);}
+.project_header{width: 100%;height: 100vh;position: relative;top: 0;background-color: #E57A78;box-shadow: 0 3px 6px #BFBFBF;z-index: 2;display: flex;flex-wrap: wrap;color: #FFFFFF;padding: 150px 100px 30px 150px;}
+.project_header::after{content: "";position: absolute;top: 0;left: 0; bottom: 0;right: 0;background: url("../images/dashboard_background.svg");background-repeat: no-repeat;background-size: cover;opacity: 0.1; z-index: -1;}
+.project_header h2{font-size: 5rem;text-align: center;width: 100%;}
+.project_header small{text-align: center;width: 100%;font-weight: 300;font-size: 3rem;}
+.project_header .project_timing{margin: auto;text-align: center;text-shadow: 0 3px 15px #000000;width: 100%;margin-top: -100px;}
+.project_header .project_timing .numbers{font-size: 9rem;}
+.project_header .project_timing .text{font-size: 5rem;font-weight: 300;}
+.project_header .project_last-timing{margin: auto;margin-top: 5px;}
+.project_header .project_last-timing .project_last-timing-content{font-weight: 400;}
+
 
 @media only screen and (max-width: 600px) {
     /* General */
     .back-arrow{color: #E57A78;text-shadow: 0 1px 5px #000000;position: absolute;left: 0;top: 0;width: 50px;height: 50px;text-align: center;}
     .back-arrow i{margin: auto;font-size: 2rem;line-height: 50px;}
-
+    .action-button{width: 50px;height: 50px;}
+    .action-button a i{font-size: 1rem;}
 
     /* Dashboard page */
-    .dashboard_header{height: 20vh;padding: 30px 70px 30px 70px;}
-    .dashboard_header small{font-size: 1rem;}
-    .dashboard_header .dashboard_timing{margin-left: 0;margin-top: -5px;}
+    .dashboard_header{height: 25vh;padding: 20px 70px 30px 70px;}
+    .dashboard_header small{font-size: 0.8rem;}
+    .dashboard_header .dashboard_timing{margin-top: -5px;}
     .dashboard_header .dashboard_timing .numbers{font-size: 1.2rem;}
     .dashboard_header .dashboard_timing .text{font-size: 0.8rem;}
     .dashboard_header .dashboard_project-add{width: 60px;height: 60px;}
     .dashboard_header .dashboard_project-add a i{font-size: 1rem;}
-
-
-    .output-list{width: 100%;height: 80vh;position: absolute;bottom: 0;z-index: 1;overflow: scroll;}
+    
+    .output-list{width: 100%;height: 75vh;position: absolute;bottom: 0;z-index: 1;overflow: scroll;}
     .output-list ul{background-color: #FFFFFF;list-style: none;padding: 0;display: block;}
     .output-list ul li{width: 100%;height: 50px;padding: 10px 20px;display: flex;border-bottom: 0.5px solid #D4D4D4;box-shadow: none;margin: 0;}
     .output-list ul li.no_projects{height: auto;font-size: 0.8rem;font-weight: 300;}
@@ -98,14 +101,11 @@ body{background-color: #D4D4D4;font-family: 'Source Sans Pro', sans-serif;}
     .output-list ul li a small.dashboard_project-timing .numbers{font-size: 0.8rem;}
     .output-list ul li a small.dashboard_project-timing .text{font-size: 0.6rem;font-weight: 300;}
 
-
-    /* Add project page */
-
     /* Project page */
-    .dashboard_header h2{text-align: center;width: 100%;margin: auto;margin-top: -20px;margin-bottom: 5px;}
-    .dashboard_header .dashboard_time-start{width: 60px;height: 60px;}
-    .dashboard_header .dashboard_time-start a i{font-size: 1rem;}
-    .dashboard_header .dashboard_time-add{width: 60px;height: 60px;}
-    .dashboard_header .dashboard_time-add a i{font-size: 1rem;}
-
+    .project_header{height: 25vh;padding: 10px 70px 10px 70px;}
+    .project_header small{font-size: 0.8rem;}
+    .project_header .project_timing{margin-left: 0;margin-top: -5px;}
+    .project_header .project_timing .numbers{font-size: 1.2rem;}
+    .project_header .project_timing .text{font-size: 0.8rem;}
+    .project_header h2{text-align: center;width: 100%;margin: auto;margin-bottom: 5px;}
 }
