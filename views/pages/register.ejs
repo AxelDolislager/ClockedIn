@@ -3,6 +3,9 @@
     <% include ../partials/head %>
     <body class="startbackground">
         <div class="wrapper">
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+            <% } %>
             <img class="logo" src="./images/logo.svg" alt="ProjectManagerApp">
             <form id="register_form" method="POST">
                 <div class="form_box">

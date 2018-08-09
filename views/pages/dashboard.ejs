@@ -41,6 +41,13 @@
                 <li class="no_projects">
                     <p>You don't have any project setup yet. Please click the '+' button to create your first project!</p>
                 </li>
+                <li>
+                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>password</strong>: <%= user.local.password %><br>
+                        <strong>fullname</strong>: <%= user.local.fullname %><br>
+                        <strong>initials</strong>: <%= user.local.initials %>
+                </li>
             </ul>
         </main>
         <% include ../partials/footer %>
