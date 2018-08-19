@@ -1,38 +1,55 @@
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 3000;
+// Requirements
+const   express         = require("express"),
+        bodyParser      = require("body-parser"),
+        mongoose        = require("mongoose"),
+        passport        = require("passport"),
+        LocalStrategy   = require("passport-local"),
+        config          = require("./config/config.js")
+var     app             = express()
 
-const mongoose = require('mongoose')
-const configDB = require('./config/database.js')
-mongoose.connect(configDB.url, {useMongoClient: true})
+// Mongoose
+mongoose.connect(config.db.MONGODB_URI)
 
-const passport = require('passport')
-require('./config/passport')(passport)
-const flash = require('connect-flash')
-
-const morgan = require('morgan')
-const cookieParser = require('cookie-parser')
-const bodyParser = require('body-parser')
-const session = require('express-session')
-
-
-// Express
-app.use(morgan('dev'))
-app.use(cookieParser())
-app.use(bodyParser())
-
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.set('views', './views')
-
-// Passport
-app.use(session({ secret: 'shhitsadamnsecretmate' }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
+// Models
+var User    = require("./models/user")
 
 // Routes
-require('./app/routes.js')(app, passport);
+var indexRoutes     = require("./routes/index"),
+    userRoutes      = require("./routes/users")
 
-// Launch
-app.listen(port)
+// Express Settings
+app.set("view engine", "ejs")
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(express.static('public'))
+
+// Passport Configuration
+app.use(require("express-session")({
+    secret: config.app.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//Middleware
+app.use(function(req, res, next){
+   res.locals.currentUser = req.user;
+//   res.locals.success = req.flash('success');
+//   res.locals.error = req.flash('error');
+   next();
+});
+
+
+//Router
+app.use("/", indexRoutes);
+app.use("/", userRoutes);
+
+
+//Start App
+app.listen(config.app.PORT, config.app.IP, function(){
+   console.log("The ProjectManagerApp Server Has Started!");
+});

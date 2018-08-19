@@ -1,22 +1,26 @@
 {
-  "name": "node-authentication",
+  "name": "project-manager-app",
+  "version": "1.0.0",
+  "description": "Simple Web App for freelancers to track their time spend on projects",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies" : {
-    "express" : "~4.14.0",           
-    "ejs" : "~2.5.2",               
-    "mongoose" : "~4.13.1",          
-    "passport" : "~0.3.2",         
-    "passport-local" : "~1.0.0",    
-    "connect-flash" : "~0.1.1",     
-    "bcrypt-nodejs" : "latest",
-
-    "morgan": "~1.7.0",
-    "body-parser": "~1.15.2",
-    "cookie-parser": "~1.4.3",
-    "method-override": "~2.3.6",
-    "express-session": "~1.14.1"   
+  "repository": {
+    "type": "git",
+    "url": "tbd"
+  },
+  "author": "Axel D'Olislager, Robin De Neef",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.2.8",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1"
   }
 }
