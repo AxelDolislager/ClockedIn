@@ -11,11 +11,13 @@ var     app             = express()
 mongoose.connect(config.db.MONGODB_URI)
 
 // Models
-var User    = require("./models/user")
+var User    = require("./models/user"),
+    Project = require("./models/project")
 
 // Routes
 var indexRoutes     = require("./routes/index"),
-    userRoutes      = require("./routes/users")
+    userRoutes      = require("./routes/users"),
+    projectRoutes   = require("./routes/projects")
 
 // Express Settings
 app.set("view engine", "ejs")
@@ -47,6 +49,7 @@ app.use(function(req, res, next){
 //Router
 app.use("/", indexRoutes);
 app.use("/", userRoutes);
+app.use("/projects", projectRoutes)
 
 
 //Start App

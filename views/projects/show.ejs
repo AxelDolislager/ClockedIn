@@ -1,14 +1,14 @@
 <html>
-    <% include ../partials/head %>
+    <% include ../partials/header %>
     <body>
         <header class="project_header">
-            <a href="/dashboard" class="back-arrow"><i class="fa fa-angle-left fa-2x back-arrow"></i></a>
-            <h2>Projectname</h2>
+            <a href="/projects" class="back-arrow"><i class="fa fa-angle-left fa-2x back-arrow"></i></a>
+            <h2><%= project.projectName%></h2>
             <small>Total time spend</small>
             <div class="project_timing">
-                <span class="numbers">298</span><span class="text">days</span>
-                <span class="numbers">23</span><span class="text">hours</span>
-                <span class="numbers">57</span><span class="text">minutes</span>
+                <span class="numbers"><%=Math.floor( project.totalTimeSpend / 86400)%></span><span class="text">days</span>
+                <span class="numbers"><%=Math.floor(( project.totalTimeSpend % 86400) / 3600)%></span><span class="text">hours</span>
+                <span class="numbers"><%=Math.floor(( project.totalTimeSpend  % 3600) / 60)%></span><span class="text">minutes</span>
             </div>
             <small class="project_last-timing">
                 last input: 

@@ -1,5 +1,5 @@
 <html>
-    <% include ../partials/head %>
+    <% include ../partials/header %>
     <body>
         <header class="dashboard_header">
             <small>Total time spend</small>
@@ -13,41 +13,38 @@
                 <span class="dashboard_last-timing-content">00H00M00S</span>
             </small>
             <div class="action-button bottom-right">
-                <a href="/createproject"><i class="fa fa-plus fa-2x"></i></a>
+                <a href="/projects/new"><i class="fa fa-plus fa-2x"></i></a>
             </div>
         </header>
         <main class="output-list">
             <ul>
-                <li>
-                    <a href="/project">
-                        <p>Projectname</p>
-                        <small class="dashboard_project-timing">
-                            <span class="numbers">4</span><span class="text">days</span>
-                            <span class="numbers">10</span><span class="text">hours</span>
-                            <span class="numbers">07</span><span class="text">minutes</span>
-                        </small>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <p>Projectname</p>
-                        <small class="dashboard_project-timing">
-                            <span class="numbers">4</span><span class="text">days</span>
-                            <span class="numbers">10</span><span class="text">hours</span>
-                            <span class="numbers">07</span><span class="text">minutes</span>
-                        </small>
-                    </a>
-                </li>
-                <li class="no_projects">
-                    <p>You don't have any project setup yet. Please click the '+' button to create your first project!</p>
-                </li>
-                <li>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %><br>
-                        <strong>fullname</strong>: <%= user.local.fullname %><br>
-                        <strong>initials</strong>: <%= user.local.initials %>
-                </li>
+                <% if(projects.length > 0){
+                    projects.forEach(function(project){ %>
+                        <li>
+                            <a href="/projects/<%= project._id %>">
+                                <p><%= project.projectName%></p>
+                                <small class="dashboard_project-timing">
+                                    <span class="numbers"><%=Math.floor( project.totalTimeSpend / 86400)%></span><span class="text">days</span>
+                                    <span class="numbers"><%=Math.floor(( project.totalTimeSpend % 86400) / 3600)%></span><span class="text">hours</span>
+                                    <span class="numbers"><%=Math.floor(( project.totalTimeSpend  % 3600) / 60)%></span><span class="text">minutes</span>
+                                </small>
+                            </a>
+                        </li>
+                    <% })
+                } else {%>
+                    <li class="no_projects">
+                        <p>You don't have any project setup yet. Please click the '+' button to create your first project!</p>
+                    </li>
+                <% } %>
+                <% if(false/*currentUser*/) {       //DEBUG%> 
+                    <li>
+                            <strong>id</strong>: <%= currentUser._id %><br>
+                            <strong>email</strong>: <%= currentUser.username %><br>
+                            <strong>password</strong>: <%= currentUser.password %><br>
+                            <strong>fullname</strong>: <%= currentUser.fullname %><br>
+                            <strong>initials</strong>: <%= currentUser.initials %>
+                    </li>
+                <% } %>
             </ul>
         </main>
         <% include ../partials/footer %>

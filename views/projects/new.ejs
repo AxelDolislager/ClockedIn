@@ -1,9 +1,9 @@
 <html>
-    <% include ../partials/head %>
+    <% include ../partials/header %>
     <body class="new_project">
-        <a href="/dashboard" class="back-arrow"><i class="fa fa-angle-left fa-2x back-arrow"></i></a>
-        <form id="add-project_form">
-            <input type="text" placeholder="Project name" name="add_project-name" required>
+        <a href="/projects" class="back-arrow"><i class="fa fa-angle-left fa-2x back-arrow"></i></a>
+        <form action="/projects" method="POST" id="add-project_form">
+            <input type="text" placeholder="Project name" name="add_project_name" required>
             <button type="submit" form="add-project_form" value="submit"><i class="fa fa-angle-right fa-2x"></i></button>
         </form>
         <% include ../partials/footer %>
