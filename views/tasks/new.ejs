@@ -1,0 +1,15 @@
+<html>
+    <% include ../partials/header %>
+    <body class="new_task">
+        <a href="/projects/<%= projectId %>" class="back-arrow"><i class="fa fa-angle-left fa-2x back-arrow"></i></a>
+        <form id="add-timing_form" action="/projects/<%= projectId %>/tasks" method="POST">
+            <input type="text" placeholder="Description (optional)" name="create_task_desc">
+            <label for="starttime">Starting time:</label>
+            <input type="time" id="starttime" name="create_task_start_time" value="00:00" required>
+            <label for="ending">Ending time:</label>
+            <input type="time" id="endtime" name="create_task_end_time" value="00:00" required>
+            <button type="submit" form="add-timing_form" value="submit"><i class="fa fa-angle-right fa-2x"></i></button>
+        </form>
+        <% include ../partials/footer %>
+    </body>
+</html>

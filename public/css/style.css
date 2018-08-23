@@ -72,6 +72,17 @@ body{background-color: #D4D4D4;font-family: 'Source Sans Pro', sans-serif;}
 .project_header .project_last-timing{margin: auto;margin-top: 5px;}
 .project_header .project_last-timing .project_last-timing-content{font-weight: 400;}
 
+/* Add task page */
+.new_task{background-color: #E57A78;height: 100vh;width: 100vw;display: flex;flex-wrap: nowrap;}
+.new_task form{margin: auto;width: 300px;}
+.new_task form label{color: white;margin-top: 20px;display: block;}
+.new_task form input{border: none;background-color: rgba(0,0,0,0);font-family: 'Source Sans Pro', sans-serif;font-weight: 300;color: #ffffff;}
+.new_task form input[type=text]{border-bottom: 1px solid #FFFFFF;background-color: rgba(0,0,0,0);font-size: 1.3rem;padding-bottom: 5px;width: 85%;}
+.new_task form input[type=text]::placeholder{color: rgba(255,255,255,1);}
+.new_task form input[type=time]{font-size: 2rem;display: block;margin: auto;margin-right: calc(50% - 30px);width: 85%;}
+.new_task form button{width: 10%;float: right;text-align: right;background-color: rgba(0,0,0,0);border: none;}
+.new_task form button i{color: white;font-size: 2.3rem;text-shadow: 0 1px 5px #000000;margin-top: -35px;}
+
 
 @media only screen and (max-width: 600px) {
     /* General */

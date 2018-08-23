@@ -5,7 +5,7 @@ var Project = require("../models/project")
 //INDEX - show all projects from a user
 router.get("/", function(req, res){                             //isloggedin
   // Get all projects from the user from DB
-  Project.find({}, function(err, allProjects){
+  Project.find({"author.username": req.user.username}, function(err, allProjects){
      if(err){
          console.log(err);
      } else {
@@ -25,7 +25,7 @@ router.post("/", function(req, res){
         if(err){
             console.log(err);
         } else {
-            //redirect back to campgrounds page
+            //redirect back to projects page
             res.redirect("/projects");
         }
     });
@@ -38,8 +38,8 @@ router.get("/new", function(req, res){
 
 // SHOW - shows more info about one project
 router.get("/:id", function(req, res){
-    //find the campground with provided ID
-    Project.findById(req.params.id, function(err, project){
+    //find the project with provided ID
+    Project.findById(req.params.id).populate("tasks").exec(function(err, project){
         if(err){
             console.log(err);
         } else {

@@ -91,17 +91,17 @@ Refactoring 14th of August.
   - GET `/logout` - Destroys User Session
 
 ## Development ToDo's
-__**Managment**__
-[ ] Find A Name
+__**Managment**__  
+[ ] Find A Name  
 
-__**Middleware**__
-[ ] Check if Logged In
-[ ] Check Ownership (if the user is the author of the project/task)
-[ ] Reimplement Morgan & Flash
+__**Middleware**__  
+[ ] Check if Logged In  
+[ ] Check Ownership (if the user is the author of the project/task)  
+[ ] Reimplement Morgan & Flash  
 
-__**Features**__
-[ ] Project Edit, Update, Delete
-[ ] Tasks
+__**Features**__  
+[ ] Project Edit, Update, Delete  
+[ ] Tasks  
 
 
 

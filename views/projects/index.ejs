@@ -4,9 +4,15 @@
         <header class="dashboard_header">
             <small>Total time spend</small>
             <div class="dashboard_timing">
-                <span class="numbers">298</span><span class="text">days</span>
-                <span class="numbers">23</span><span class="text">hours</span>
-                <span class="numbers">57</span><span class="text">minutes</span>
+                <%  
+                    var totalTime = 0
+                    projects.forEach(function(project){
+                        totalTime += project.totalTimeSpend
+                    })
+                %>
+                <span class="numbers"><%=Math.floor( totalTime / 86400)%></span><span class="text">days</span>
+                <span class="numbers"><%=Math.floor(( totalTime % 86400) / 3600)%></span><span class="text">hours</span>
+                <span class="numbers"><%=Math.floor(( totalTime  % 3600) / 60)%></span><span class="text">minutes</span>
             </div>
             <small class="dashboard_last-timing">
                 last input: 
@@ -19,7 +25,7 @@
         <main class="output-list">
             <ul>
                 <% if(projects.length > 0){
-                    projects.forEach(function(project){ %>
+                    projects.forEach(function(project){%>
                         <li>
                             <a href="/projects/<%= project._id %>">
                                 <p><%= project.projectName%></p>

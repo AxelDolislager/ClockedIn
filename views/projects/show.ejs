@@ -6,9 +6,9 @@
             <h2><%= project.projectName%></h2>
             <small>Total time spend</small>
             <div class="project_timing">
-                <span class="numbers"><%=Math.floor( project.totalTimeSpend / 86400)%></span><span class="text">days</span>
-                <span class="numbers"><%=Math.floor(( project.totalTimeSpend % 86400) / 3600)%></span><span class="text">hours</span>
-                <span class="numbers"><%=Math.floor(( project.totalTimeSpend  % 3600) / 60)%></span><span class="text">minutes</span>
+                <span class="numbers"><%=Math.floor( project.totalTimeSpend / 86400)%> </span><span class="text">days</span>
+                <span class="numbers"><%=Math.floor(( project.totalTimeSpend % 86400) / 3600)%> </span><span class="text">hours</span>
+                <span class="numbers"><%=Math.floor(( project.totalTimeSpend  % 3600) / 60)%> </span><span class="text">minutes</span>
             </div>
             <small class="project_last-timing">
                 last input: 
@@ -18,7 +18,7 @@
                     <a href="#"><i class="fa fa-clock fa-2x"></i></a>
                 </div>
             <div class="action-button bottom-right">
-                <a href="/addtiming"><i class="fa fa-plus fa-2x"></i></a>
+                <a href="/projects/<%= project._id %>/tasks/new"><i class="fa fa-plus fa-2x"></i></a>
             </div>
         </header>
         <main class="output-list">
@@ -41,6 +41,23 @@
                         </small>
                     </a>
                 </li>
+                <% if(project.tasks.length > 0){
+                    project.tasks.forEach(function(task){ %>
+                        <li>
+                            <a href="#">
+                                <p><% if(task.description.length > 0){%> <%=task.description%><% }else{ %><%=task.startTime.toLocaleString()%><% } %></p>
+                                <small class="dashboard_project-timing">
+                                    <span class="numbers"><%=Math.floor(( task.duration % 86400) / 3600)%></span><span class="text">hours</span>
+                                    <span class="numbers"><%=Math.floor(( task.duration  % 3600) / 60)%></span><span class="text">minutes</span>
+                                </small>
+                            </a>
+                        </li>
+                    <% })
+                } else {%>
+                    <li class="no_projects">
+                        <p>You don't have any project setup yet. Please click the '+' button to create your first project!</p>
+                    </li>
+                <% } %>
             </ul>
         </main>
     </body>

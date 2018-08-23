@@ -17,7 +17,8 @@ var User    = require("./models/user"),
 // Routes
 var indexRoutes     = require("./routes/index"),
     userRoutes      = require("./routes/users"),
-    projectRoutes   = require("./routes/projects")
+    projectRoutes   = require("./routes/projects"),
+    taskRoutes      = require("./routes/tasks")
 
 // Express Settings
 app.set("view engine", "ejs")
@@ -49,7 +50,8 @@ app.use(function(req, res, next){
 //Router
 app.use("/", indexRoutes);
 app.use("/", userRoutes);
-app.use("/projects", projectRoutes)
+app.use("/projects", projectRoutes),
+app.use("/projects/:id/tasks", taskRoutes)
 
 
 //Start App
