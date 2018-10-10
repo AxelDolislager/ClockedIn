@@ -124,53 +124,6 @@
                         
                     },1000);
                 }
-                
-                
-            /*
-            BACKUP!!!
-                $(".start-new").click(function(){
-                    $(this).hide();
-                    $(".stop-new").css({"display": "inline-block"});
-                    $(".current-timing").css({"display": "flex"});
-                    localStorage.setItem("projectTimestamp", new Date());
-                    timerStarts();
-                });
-                if(localStorage.projectTimestamp){
-                    $(".start-new").hide();
-                    $(".stop-new").css({"display": "inline-block"});
-                    $(".current-timing").css({"display": "flex"});
-                    timerStarts();
-                }
-                $(".stop-new").click(function(){
-                    $(this).hide();
-                    $(".start-new").show();
-                    $(".current-timing").hide();
-                    localStorage.removeItem("projectTimestamp");
-                });
-                
-                function twoDigits(timing){
-                    if(timing <= 9){
-                        return "0" + timing;
-                    }else{
-                        return timing;
-                    }
-                }
-                
-                //timer
-                function timerStarts(){
-                    currentTimestampRunning = new Date(localStorage.projectTimestamp);
-                    var x = setInterval(function(){
-                        var now = new Date();
-                        var difference = now - currentTimestampRunning;
-                        
-                        var minutes = twoDigits(new Date(1000*Math.round(difference/1000)).getUTCMinutes());
-                        var seconds = twoDigits(new Date(1000*Math.round(difference/1000)).getUTCSeconds());
-                        
-                        document.getElementById("current-timing_value").innerHTML = minutes + ":" + seconds;
-                        
-                    },1000);
-                }
-                */
             </script>
             <% include ../partials/footer %>
         </main>

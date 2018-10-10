@@ -3,6 +3,13 @@ var router  = express.Router({mergeParams: true});
 var Task = require("../models/task")
 var Project = require("../models/project")
 
+function twoDigits(timing){
+    if(timing <= 9){
+        return "0" + timing;
+    }else{
+        return timing;
+    }
+}
 
 //CREATE - add new project to DB
 router.post("/", function(req, res){
@@ -48,6 +55,7 @@ router.get("/new", function(req, res){
     res.render("tasks/new", {projectId: projectId, current_page: "none"}); 
 });
 
+
 // EDIT - shows edit form for a task
 router.get("/:id2/edit", function(req, res){
     Task.findById(req.params.id2, function(err, task){
@@ -55,8 +63,8 @@ router.get("/:id2/edit", function(req, res){
             console.log(err)
         }else{
             //set everything to a 2 digit number!
-            var startTimeFormat = new Date(task.startTime).getFullYear() + "/" + new Date(task.startTime).getMonth() + "/" + new Date(task.startTime).getDay() + " " + new Date(task.startTime).getHours() + ":" + new Date(task.startTime).getMinutes() + ":" + new Date(task.startTime).getSeconds();
-            var endTimeFormat = new Date(task.endTime).getFullYear() + "/" + new Date(task.endTime).getMonth() + "/" + new Date(task.endTime).getDay() + " " + new Date(task.endTime).getHours() + ":" + new Date(task.endTime).getMinutes() + ":" + new Date(task.endTime).getSeconds();
+            var startTimeFormat = twoDigits(new Date(task.startTime).getFullYear()) + "/" + twoDigits(new Date(task.startTime).getMonth()) + "/" + twoDigits(new Date(task.startTime).getDay()) + " " + twoDigits(new Date(task.startTime).getHours()) + ":" + twoDigits(new Date(task.startTime).getMinutes()) + ":" + twoDigits(new Date(task.startTime).getSeconds());
+            var endTimeFormat = twoDigits(new Date(task.endTime).getFullYear()) + "/" + twoDigits(new Date(task.endTime).getMonth()) + "/" + twoDigits(new Date(task.endTime).getDay()) + " " + twoDigits(new Date(task.endTime).getHours()) + ":" + twoDigits(new Date(task.endTime).getMinutes()) + ":" + twoDigits(new Date(task.endTime).getSeconds());
             
             res.render("tasks/edit", {projectId: req.params.id, task: task, taskStartTime: startTimeFormat, taskEndTime: endTimeFormat, current_page: "none"})
         }

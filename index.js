@@ -55,6 +55,10 @@ app.use("/", userRoutes);
 app.use("/projects", projectRoutes),
 app.use("/projects/:id/tasks", taskRoutes)
 
+//404
+app.get("*", function(req, res){
+    res.redirect("404");
+});
 
 //Start App
 app.listen(config.app.PORT, config.app.IP, function(){

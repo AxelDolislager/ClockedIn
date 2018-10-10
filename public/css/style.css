@@ -27,6 +27,14 @@ body{background-color: white;font-family: 'Source Sans Pro', sans-serif;}
 .startbackground .bottomaction a p.align-right{text-align: right;padding-right: 20px;}
 .startbackground .bottomaction a i{width: 20px;margin: auto 10px;}
 
+/* 404 */
+.errorpage{background-color: #E57A78;color: white;}
+.errorpage main{text-align: center;width: 600px;height: 100vh;margin: auto;position: relative;display: flex;flex-wrap: wrap;}
+.errorpage main i{display: block;width:: 100%;margin: auto;}
+.errorpage main div{margin: auto;width: 100%;}
+.errorpage main div h2{}
+.errorpage main div p{}
+
 /* Toolbar(for toggling nav and other! */
 .toolbar{display: none;width: 100%;background-color: #E57A78;color: white;box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);flex-wrap: nowrap;}
 .toolbar  a{color: white;text-decoration: none;padding: 10px 20px;display: block;}
