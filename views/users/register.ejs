@@ -7,7 +7,7 @@
                 <div class="alert alert-danger"><%= message %></div>
             <% } %>
             <img class="logo" src="./images/logo.svg" alt="ProjectManagerApp">
-            <form id="register_form" method="POST">
+            <form id="register_form" method="POST" autocomplete="off">
                 <div class="form_box">
                     <input type="email" placeholder="Email" name="username">
                     <hr>
@@ -31,5 +31,6 @@
             </a>
         </div>
         <% include ../partials/footer %>
+        <script src="/js/mobile-logreg.js"></script>
     </body>
 </html>

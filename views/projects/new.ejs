@@ -1,11 +1,26 @@
 <html>
     <% include ../partials/header %>
-    <body class="new_project">
-        <a href="/projects" class="back-arrow"><i class="fa fa-angle-left fa-2x back-arrow"></i></a>
-        <form action="/projects" method="POST" id="add-project_form">
-            <input type="text" placeholder="Project name" name="add_project_name" required>
-            <button type="submit" form="add-project_form" value="submit"><i class="fa fa-angle-right fa-2x"></i></button>
-        </form>
+    <body>
+        <% include ../partials/navigation %>
+        <header class="toolbar">
+            <div class="backBtn"><a href="/projects"><i class="fa fa-chevron-left"></i></a></div>
+        </header>
+        <main>
+            <form id="add-project_form" action="/projects" method="POST">
+                <div class="container">
+                    <h2>Create a new project!</h2>
+                    <small>A project contains all your timestamps. This is used to collect all data for calculating your total time spend on this project.</small>
+                    
+                    <label for="project-name">Project title</label>
+                    <input type="text" placeholder="A project name" id="project-name" name="add_project_name" required>
+                    
+                    <label for="project-description">Project description <span>(optional)</span></label>
+                    <textarea placeholder="Project Description" id="project-description" name="add_project_description"></textarea>
+                    
+                    <input type="submit" value="Create new project">
+                </div>
+            </form>
+        </main>
         <% include ../partials/footer %>
     </body>
 </html>

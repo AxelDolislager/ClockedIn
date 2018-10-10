@@ -6,21 +6,27 @@
             <div class="backBtn"><a href="/projects/<%= projectId %>"><i class="fa fa-chevron-left "></i></a></div>
         </header>
         <main>
-            <form id="add-task_form" action="/projects/<%= projectId %>/tasks" method="POST">
+            <form id="edit-task_form" action="/projects/<%= projectId %>/tasks/<%= task._id %>?_method=PUT" method="POST">
                 <div class="container">
-                    <h2>Create a new task</h2>
+                    <h2>Editing <%= task.description %></h2>
                     <small>A task....</small>
                     
                     <label for="task-desc"></label>
-                    <input type="text" placeholder="Description (optional)" id="task-desc" name="create_task_desc">
+                    <input type="text" placeholder="Description (optional)" value="<%= task.description %>" id="task-desc" name="edit_task_desc">
                     
+                    <!-- Format dates to YYYY/MM/DD HH:mm:ss -->
                     <label for="starttime">Time started: </label>
-                    <input type="text" id="starttime" name="create_task_start_time" value="00:00" required>
+                    <input type="text" id="starttime" name="edit_task_start_time" value="<%= taskStartTime %>" required>
                     
                     <label for="endtime">Time ended: </label>
-                    <input type="text" id="endtime" name="create_task_end_time" value="00:00" required>
+                    <input type="text" id="endtime" name="edit_task_end_time" value="<%= taskEndTime %>" required>
                     
-                    <input type="submit" value="Add task">
+                    <input type="submit" value="Edit task">
+                </div>
+            </form>
+            <form  id="remove-task_form" method="POST" action="/projects/<%= projectId %>/tasks/<%= task._id %>?_method=DELETE">
+                <div class="container">
+                    <input type="submit" value="Remove task" class="removeBtn">
                 </div>
             </form>
         </main>

@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 
 var projectSchema = new mongoose.Schema({
    projectName: String,
+   projectDescription: {type: String, default: "No description has been added to this project."},
    totalTimeSpend: {type: Number, default: 0},
    createdAt: { type: Date, default: Date.now },
    author: {

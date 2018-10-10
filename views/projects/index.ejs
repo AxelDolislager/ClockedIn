@@ -1,45 +1,39 @@
 <html>
     <% include ../partials/header %>
     <body>
-        <header class="dashboard_header">
-            <small>Total time spend</small>
-            <div class="dashboard_timing">
-                <%  
-                    var totalTime = 0
-                    projects.forEach(function(project){
-                        totalTime += project.totalTimeSpend
-                    })
-                %>
-                <span class="numbers"><%=Math.floor( totalTime / 86400)%></span><span class="text">days</span>
-                <span class="numbers"><%=Math.floor(( totalTime % 86400) / 3600)%></span><span class="text">hours</span>
-                <span class="numbers"><%=Math.floor(( totalTime  % 3600) / 60)%></span><span class="text">minutes</span>
-            </div>
-            <small class="dashboard_last-timing">
-                last input: 
-                <span class="dashboard_last-timing-content">00H00M00S</span>
-            </small>
-            <div class="action-button bottom-right">
-                <a href="/projects/new"><i class="fa fa-plus fa-2x"></i></a>
-            </div>
+        <% include ../partials/navigation %>
+        <header class="toolbar">
+            <div class="navToggle"><i class="fa fa-bars"></i></div>
         </header>
-        <main class="output-list">
-            <ul>
+        <main>
+            <!-- NEXT UPDATE: Recent projects, all projects, recently updated(for shared later)? -->
+            <ul class="output-grid">
                 <% if(projects.length > 0){
                     projects.forEach(function(project){%>
-                        <li>
-                            <a href="/projects/<%= project._id %>">
-                                <p><%= project.projectName%></p>
-                                <small class="dashboard_project-timing">
-                                    <span class="numbers"><%=Math.floor( project.totalTimeSpend / 86400)%></span><span class="text">days</span>
-                                    <span class="numbers"><%=Math.floor(( project.totalTimeSpend % 86400) / 3600)%></span><span class="text">hours</span>
-                                    <span class="numbers"><%=Math.floor(( project.totalTimeSpend  % 3600) / 60)%></span><span class="text">minutes</span>
-                                </small>
-                            </a>
-                        </li>
-                    <% })
-                } else {%>
-                    <li class="no_projects">
-                        <p>You don't have any project setup yet. Please click the '+' button to create your first project!</p>
+                    <li>
+                        <a class="output-grid-item" href="/projects/<%= project._id %>">
+                            <span class="total-timing"><i class="fa fa-clock"></i>
+                                <% if(Math.floor( project.totalTimeSpend / 86400) > 0){ %> <%= Math.floor( project.totalTimeSpend / 86400) %>D<% } %>
+                                <% if(Math.floor((project.totalTimeSpend % 86400) / 3600) <= 9 ){ %>0<% } %><%= Math.floor(( project.totalTimeSpend % 86400) / 3600) %>:<% if(Math.floor((project.totalTimeSpend % 3600) / 60) <= 9 ){ %>0<% } %><%= Math.floor(( project.totalTimeSpend  % 3600) / 60)%>
+                            </span>
+                            <p class="title"><%= project.projectName %></p>
+                            <small class="description"><%= project.projectDescription %></small>
+                        </a>
+                        <a class="editBtn" href="/projects/<%= project._id %>/edit"><i class="fa fa-cog"></i></a>
+                    </li>
+                    <% }) %>
+                    <li class="create-new">
+                        <a class="output-grid-item" href="/projects/new">
+                            <i class="fa fa-plus fa-2x"></i>
+                            <p>Create a new project!</p>
+                        </a>
+                    </li>
+                <% } else { %>
+                    <li class="create-new">
+                        <a class="output-grid-item" href="/projects/new">
+                            <i class="fa fa-plus fa-2x"></i>
+                            <p>We see you don't have any projects setup yet. Click here to create one!</p>
+                        </a>
                     </li>
                 <% } %>
                 <% if(false/*currentUser*/) {       //DEBUG%> 

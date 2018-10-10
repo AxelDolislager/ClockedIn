@@ -1,0 +1,11 @@
+<script>
+    $(".navToggle").click(function(){
+        console.log("toggle!");
+        $("aside.nav").animate({"left": "0px"},300);
+        $(".navigation-background").toggle();
+    });
+    $(".navigation-background").click(function(){
+        $("aside.nav").animate({"left": "-230px"},300);
+        $(this).toggle();
+    });
+</script>

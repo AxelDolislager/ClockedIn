@@ -55,4 +55,9 @@ router.get("/logout", function(req, res){
    res.redirect("/");
 });
 
+//Usersettings
+router.get("/settings", function(req, res){
+    res.render("users/settings", {current_page: "settings"});
+})
+
 module.exports = router;

@@ -2,17 +2,7 @@
 
 /* General */
 *{margin: 0px;box-sizing: border-box;}
-body{background-color: #D4D4D4;font-family: 'Source Sans Pro', sans-serif;}
-
-.back-arrow{color: #E57A78;text-shadow: 0 1px 5px #000000;position: absolute;left: 0;top: 0;width: 150px;height: 150px;text-align: center;}
-.back-arrow:hover{background-color: rgba(255,255,255,0.5);}
-.back-arrow i{margin: auto;font-size: 5rem;line-height: 150px;}
-.action-button{position: absolute;width: 150px;height: 150px;display: flex;cursor: pointer;}
-.action-button:hover{background-color: rgba(255,255,255,0.3);}
-.action-button a{margin: auto;display: block;color: white;}
-.action-button a i{font-size: 5rem;}
-.action-button.bottom-left{bottom: 0;left: 0;}
-.action-button.bottom-right{bottom: 0;right: 0;}
+body{background-color: white;font-family: 'Source Sans Pro', sans-serif;}
 
 /* Login & Register pages */
 .startbackground{background-image: url("../images/background.png");background-repeat: no-repeat;background-attachment: fixed;background-position: center;background-size: cover;}
@@ -30,93 +20,194 @@ body{background-color: #D4D4D4;font-family: 'Source Sans Pro', sans-serif;}
 .startbackground input::placeholder{color: rgba(0,0,0,0.4);}
 .startbackground hr{border: none;border: 0.5px solid #BFBFBF;}
 .startbackground button{border: none;width: 100%;height: 50px;border-radius: 7px;background-color: #E57A78;color: #FFFFFF;font-weight: bold;font-size: 15pt;box-shadow: 0 3px 6px #BFBFBF;margin: auto;margin-top: 10px;cursor: pointer;}
-.startbackground .bottomaction{position: absolute;bottom: 0;width: 100%;height: 60px;background-color: rgba(255,255,255,0.2);}
+.startbackground .bottomaction{position: fixed;bottom: 0;width: 100%;height: 60px;background-color: rgba(255,255,255,0.2);}
 .startbackground .bottomaction a{display: block;width: 320px;height: 100%;margin: auto;display: flex;color: white;text-decoration: none;}
 .startbackground .bottomaction a:hover{background-color: rgba(255,255,255,0.5);}
 .startbackground .bottomaction a p{margin: auto;width: calc(100% - 40px);padding-left: 20px;font-weight: 300;}
 .startbackground .bottomaction a p.align-right{text-align: right;padding-right: 20px;}
 .startbackground .bottomaction a i{width: 20px;margin: auto 10px;}
 
-/* Dashboard page */
-.dashboard_header{width: 100%;height: 100vh;position: relative;top: 0;background-color: #E57A78;box-shadow: 0 3px 6px #BFBFBF;z-index: 2;display: flex;flex-wrap: wrap;color: #FFFFFF;padding: 200px 100px 30px 150px;}
-.dashboard_header::after{content: "";position: absolute;top: 0;left: 0; bottom: 0;right: 0;background: url("../images/dashboard_background.svg");background-repeat: no-repeat;background-size: cover;opacity: 0.1; z-index: -1;}
-.dashboard_header small{text-align: center;width: 100%;font-weight: 300;font-size: 3rem;margin-bottom: -20px;}
-.dashboard_header .dashboard_timing{margin: auto;text-align: center;text-shadow: 0 3px 15px #000000;width: 100%;margin-top: -150px;}
-.dashboard_header .dashboard_timing .numbers{font-size: 9rem;}
-.dashboard_header .dashboard_timing .text{font-size: 5rem;font-weight: 300;}
-.dashboard_header .dashboard_last-timing{margin: auto;margin-top: 5px;}
-.dashboard_header .dashboard_last-timing .dashboard_last-timing-content{font-weight: 400;}
+/* Toolbar(for toggling nav and other! */
+.toolbar{display: none;width: 100%;background-color: #E57A78;color: white;box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);flex-wrap: nowrap;}
+.toolbar  a{color: white;text-decoration: none;padding: 10px 20px;display: block;}
+.toolbar .navToggle{margin: auto;margin-left: 0px;}
+.toolbar .navToggle i{font-size: 2rem;display: block;padding: 10px 20px;}
+.toolbar .backBtn{margin: auto;margin-left: 0px;}
+.toolbar .backBtn a i{font-size: 2rem;}
+.toolbar .editBtn{margin: auto;margin-right: 0px;}
+.toolbar .editBtn a i{font-size: 2rem;}
 
-.output-list{width: 100%;position: relative;}
-.output-list ul{list-style: none;padding: 0;display: flex;}
-.output-list ul li{width: 20%;margin: 2.5%;background-color: white;box-shadow: 0 3px 6px #BFBFBF;padding: 20px;text-align: center;}
-.output-list ul li a{color: #000000;text-decoration: none;}
-.output-list ul li a p{font-size: 1.2rem;margin-bottom: 20px;}
+/* Navigation */
+aside.nav{position: fixed;z-index: 4;left: 0;top: 0;width: 220px;height: 100%;background: #393c49;box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);background: -moz-linear-gradient(top, #393c49 0%, #3f4353 100%);background: -webkit-linear-gradient(top, #393c49 0%,#3f4353 100%);background: linear-gradient(to bottom, #393c49 0%,#3f4353 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#393c49', endColorstr='#3f4353',GradientType=0 );}
+aside.nav .userinformation{display: flex;flex-wrap: wrap;width: 100%;background-color: #E57A78;color: white;padding: 10px 20px;-webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);-moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);}
+aside.nav .userinformation .userpicture{margin: auto;width: 50px;height: 50px;}
+aside.nav .userinformation .userpicture img{width: 100%;height: 100%;border-radius: 100%;background-color: white;}
+aside.nav .userinformation .fullname{width: calc(100% - 50px);margin: auto;font-weight: 100;padding: 0 0 0 10px;}
+aside.nav .userinformation .usertime{width: 100%;display: flex;flex-wrap: wrap;margin: auto;margin-top: 10px;text-shadow: 0 1px 5px #000000;}
+aside.nav .userinformation .usertime small{display: block;margin-bottom: -5px;font-weight: 100;width: 100%;margin: auto;}
+aside.nav .userinformation .usertime .timing{margin: auto;}
+aside.nav .userinformation .usertiming .timing, .first{margin-left: 0 !important;}
+aside.nav .userinformation .usertiming .timing, .last{margin-right: 0 !important;}
+aside.nav .userinformation .usertime .timing .numbers{font-weight: 400;font-size: 1.2rem;}
+aside.nav .userinformation .usertime .timing .text{font-weight: 100;font-size: 0.8rem;}
+aside.nav nav{width: 100%;}
+aside.nav nav a{display: flex;width: 100%;padding: 15px 20px;color: #8E8E8E;text-decoration: none;font-weight: 400;text-transform: uppercase;}
+aside.nav nav a i{font-size: 1.3rem;display: block;width: 30px;text-align: center;margin: auto;margin-left: 0px;}
+aside.nav nav a span{display: block;width: calc(100% - 30px);margin: auto;margin-left: 20px;}
+aside.nav nav a:hover{background-color: rgba(0,0,0,0.2);}
+aside.nav nav a.active i{color: #E57A78;}
+aside.nav nav a.active span{color: white;}
+.navigation-background{display: none;width: 100vw;height: 100vh;background-color: rgba(0,0,0,0.8);position: absolute;top:0;right:0;bottom:0;left:0;z-index: 3;}
+
+/* General main container */
+main{width: calc(100vw - 220px - 10px);position: absolute;right: 0;}
+
+/* output grid */
+ul.output-grid{list-style: none;padding: 0;display: flex;flex-wrap: wrap;}
+ul.output-grid li{position: relative;width: 25%;color: #000000;background-color: white;border-bottom: 0.5px solid #BFBFBF;border-right: 0.5px solid #BFBFBF;}
+ul.output-grid li:hover{background-color: rgba(250,250,250);}
+ul.output-grid li a.output-grid-item{display: block;width: 100%;height: 100%;text-decoration: none;color: black;padding: 20px;}
+ul.output-grid li a.output-grid-item span.total-timing{font-size: 2rem;font-weight: 100;text-align: center;width: 100%;display: block;padding-bottom: 10px;margin-bottom: 10px;border-bottom: 1px solid #D4D4D4;}
+ul.output-grid li a.output-grid-item span.total-timing i{color: #E57A78;font-size: 1.8rem;text-shadow: 0 0.5px 2px #000000;}
+ul.output-grid li a.output-grid-item p.title{font-size: 1.5rem;}
+ul.output-grid li a.output-grid-item small.description{display: block;height: 52px;max-height: 52px;overflow: hidden;}
+ul.output-grid li a.editBtn{display: none;position: absolute;right: 10px;top: 10px;color: #D4D4D4;}
+ul.output-grid li:hover a.editBtn{display: block;}
+ul.output-grid li.create-new{background-color: #8BC34A;}
+ul.output-grid li.create-new a{color: white;display: flex;flex-wrap: wrap;}
+ul.output-grid li.create-new a i{margin: auto;margin-bottom: 0;border: 4px dashed white;border-radius: 100%;padding: 20px;text-shadow: 0 1px 3px #000000;}
+ul.output-grid li.create-new a p{margin: auto;width: 100%;text-align: center;}
+
+/* Project page header */
+.project_header{width: 100%;display: flex;border-bottom: 0.5px solid #BFBFBF;}
+.project_header .left{margin: auto;margin-top: 0;margin-left: 0;width: 50%;padding: 20px;}
+.project_header .right{margin: auto;margin-top: 0;margin-right: 0;width: 50%;padding: 20px;}
+.project_header .right small{font-weight: 300;margin-bottom: 20px;}
+.project_header .right .project_timing{}
+.project_header .right .project_timing .numbers{font-size: 1.5rem;}
+.project_header .right .project_timing .text{font-size: 1.3rem;font-weight: 300;}
+
+/* Task actions */
+.actions{width: 100%;margin: 10px 0;}
+.actions .start-new{background-color: #8BC34A;color: white;display: inline-block;padding: 5px 10px;margin: none;box-shadow: 0 3px 6px #BFBFBF;cursor: pointer;}
+.actions .start-new i{margin-right: 10px;}
+.actions .stop-new{display: none;background-color: #E57A78;color: white;padding: 5px 10px;margin: none;box-shadow: 0 3px 6px #BFBFBF;cursor: pointer;}
+.actions .stop-new i{margin-right: 10px;}
+.actions .create-new{background-color: #8BC34A;color: white;display: inline-block;padding: 5px 10px;margin: none;box-shadow: 0 3px 6px #BFBFBF;}
+.actions .create-new a {text-decoration: none;color: white;}
+.actions .create-new a i{margin-right: 10px;}
+
+/* output list */
+ul.output-list{list-style: none;padding: 0;}
+ul.output-list li{width: 100%;padding: 10px 20px;display: flex;}
+ul.output-list li:nth-child(even){background-color: rgba(230,230,230,1);}
+ul.output-list li:hover{background-color: rgba(220, 220, 220, 0.5);}
+ul.output-list li a.output-list-item{text-decoration: none;color: black;width: calc(100% - 30px);display: flex;flex-wrap: wrap;margin: auto;margin-left: 0px;}
+ul.output-list li a span.description{margin: auto;margin-left: 0px;}
+ul.output-list li a span.total-timing{margin: auto;margin-right: 0px;}
+ul.output-list li a span.total-timing i{color: #E57A78;}
+ul.output-list li a.editBtn{display: block;width: 30px;margin:auto;margin-right: 0px;text-align: right;color: orange;}
+ul.output-list li.current-timing{display: none;margin-bottom: 10px;background-color: rgba(230,230,230,1);}
+ul.output-list li.current-timing input[type="text"]{margin: auto;margin-left: 0px;font-family: "source sans pro", sans-serif;font-size: 1rem;padding: 5px 10px;}
+ul.output-list li.current-timing span.current-timing{margin: auto;margin-right: 0px;}
+ul.output-list li.current-timing span.current-timing i{color: #E57A78;}
 
 /* Add project page */
-.new_project{background-color: #E57A78;height: 100vh;width: 100vw;display: flex;flex-wrap: nowrap;}
-.new_project form{margin: auto;width: 300px;}
-.new_project form input[type=text]{border: none;border-bottom: 1px solid #FFFFFF;background-color: rgba(0,0,0,0);font-family: 'Source Sans Pro', sans-serif;font-size: 1.3rem;font-weight: 300;padding-bottom: 5px;width: 85%;}
-.new_project form input[type=text]::placeholder{color: rgba(255,255,255,1);}
-.new_project form button{width: 10%;float: right;text-align: right;background-color: rgba(0,0,0,0);border: none;}
-.new_project form button i{color: white;font-size: 2.3rem;text-shadow: 0 1px 5px #000000;}
+#add-project_form{width: 100%;padding: 0px 5px;height: calc(100vh- 53px);display: flex;}
+#add-project_form .container{width: 600px;margin: auto;margin-top: 20px;}
+#add-project_form .container small{display: block;color: #8E8E8E;padding-bottom: 10px;border-bottom: 0.5px solid #BFBFBF;margin-bottom: 30px;}
+#add-project_form label{font-weight: 900;}
+#add-project_form label span{font-weight: 100;}
+#add-project_form .container input[type="text"]{display: block;width: 100%;margin-bottom: 15px;padding: 5px 10px;border-radius: 5px;font-family: "Source Sans Pro", sans-serif;font-size: 1rem;border: 1px solid #BFBFBF;background-color: rgba(250,250,250);}
+#add-project_form .container textarea{display: block;width: 100%;margin-bottom: 15px;padding: 5px 10px;border-radius: 5px;font-family: "Source Sans Pro", sans-serif;font-size: 1rem;border: 1px solid #BFBFBF;background-color: rgba(250,250,250);height: 200px;resize: vertical;}
+#add-project_form .container input[type="submit"]{display: block;border: 1px solid #BFBFBF;background-color: #8BC34A;color: white;font-size: 1rem;font-weight: 900;padding: 15px;border-radius: 5px;}
 
-/* Project page */
-.project_header{width: 100%;height: 100vh;position: relative;top: 0;background-color: #E57A78;box-shadow: 0 3px 6px #BFBFBF;z-index: 2;display: flex;flex-wrap: wrap;color: #FFFFFF;padding: 150px 100px 30px 150px;}
-.project_header::after{content: "";position: absolute;top: 0;left: 0; bottom: 0;right: 0;background: url("../images/dashboard_background.svg");background-repeat: no-repeat;background-size: cover;opacity: 0.1; z-index: -1;}
-.project_header h2{font-size: 5rem;text-align: center;width: 100%;}
-.project_header small{text-align: center;width: 100%;font-weight: 300;font-size: 3rem;}
-.project_header .project_timing{margin: auto;text-align: center;text-shadow: 0 3px 15px #000000;width: 100%;margin-top: -100px;}
-.project_header .project_timing .numbers{font-size: 9rem;}
-.project_header .project_timing .text{font-size: 5rem;font-weight: 300;}
-.project_header .project_last-timing{margin: auto;margin-top: 5px;}
-.project_header .project_last-timing .project_last-timing-content{font-weight: 400;}
+/* Edit project page */
+#edit-project_form{width: 100%;padding: 0px 5px;display: flex;}
+#edit-project_form .container{width: 600px;margin: auto;margin-top: 20px;}
+#edit-project_form .container small{display: block;color: #8E8E8E;padding-bottom: 10px;border-bottom: 0.5px solid #BFBFBF;margin-bottom: 30px;}
+#edit-project_form label{font-weight: 900;}
+#edit-project_form label span{font-weight: 100;}
+#edit-project_form .container input[type="text"]{display: block;width: 100%;margin-bottom: 15px;padding: 5px 10px;border-radius: 5px;font-family: "Source Sans Pro", sans-serif;font-size: 1rem;border: 1px solid #BFBFBF;background-color: rgba(250,250,250);}
+#edit-project_form .container textarea{display: block;width: 100%;margin-bottom: 15px;padding: 5px 10px;border-radius: 5px;font-family: "Source Sans Pro", sans-serif;font-size: 1rem;border: 1px solid #BFBFBF;background-color: rgba(250,250,250);height: 200px;resize: vertical;}
+#edit-project_form .container input[type="submit"]{display: inline-block;border: 1px solid #BFBFBF;background-color: #8BC34A;color: white;font-size: 1rem;font-weight: 900;padding: 15px;border-radius: 5px;}
+#remove-project_form{width: 100%;display: flex;}
+#remove-project_form{width: 600px;margin: auto;margin-top: 20px;}
+#remove-project_form .container input.removeBtn{color: white;text-decoration: none;border: 1px solid #BFBFBF;background-color: #E57A78;color: white;font-size: 1rem;font-weight: 900;padding: 15px;border-radius: 5px;}
 
 /* Add task page */
-.new_task{background-color: #E57A78;height: 100vh;width: 100vw;display: flex;flex-wrap: nowrap;}
-.new_task form{margin: auto;width: 300px;}
-.new_task form label{color: white;margin-top: 20px;display: block;}
-.new_task form input{border: none;background-color: rgba(0,0,0,0);font-family: 'Source Sans Pro', sans-serif;font-weight: 300;color: #ffffff;}
-.new_task form input[type=text]{border-bottom: 1px solid #FFFFFF;background-color: rgba(0,0,0,0);font-size: 1.3rem;padding-bottom: 5px;width: 85%;}
-.new_task form input[type=text]::placeholder{color: rgba(255,255,255,1);}
-.new_task form input[type=time]{font-size: 2rem;display: block;margin: auto;margin-right: calc(50% - 30px);width: 85%;}
-.new_task form button{width: 10%;float: right;text-align: right;background-color: rgba(0,0,0,0);border: none;}
-.new_task form button i{color: white;font-size: 2.3rem;text-shadow: 0 1px 5px #000000;margin-top: -35px;}
+#add-task_form{width: 100%;padding: 0px 5px;height: calc(100vh- 53px);display: flex;}
+#add-task_form .container{width: 600px;margin: auto;margin-top: 20px;}
+#add-task_form .container small{display: block;color: #8E8E8E;padding-bottom: 10px;border-bottom: 0.5px solid #BFBFBF;margin-bottom: 30px;}
+#add-task_form label{font-weight: 900;}
+#add-task_form label span{font-weight: 100;}
+#add-task_form .container input[type="text"]{display: block;width: 100%;margin-bottom: 15px;padding: 5px 10px;border-radius: 5px;font-family: "Source Sans Pro", sans-serif;font-size: 1rem;border: 1px solid #BFBFBF;background-color: rgba(250,250,250);}
+#add-task_form .container textarea{display: block;width: 100%;margin-bottom: 15px;padding: 5px 10px;border-radius: 5px;font-family: "Source Sans Pro", sans-serif;font-size: 1rem;border: 1px solid #BFBFBF;background-color: rgba(250,250,250);height: 200px;resize: vertical;}
+#add-task_form .container input[type="submit"]{display: inline-block;border: 1px solid #BFBFBF;background-color: #8BC34A;color: white;font-size: 1rem;font-weight: 900;padding: 15px;border-radius: 5px;}
+#add-task_form .container a.removeBtn{color: white;text-decoration: none;border: 1px solid #BFBFBF;background-color: #E57A78;color: white;font-size: 1rem;font-weight: 900;padding: 15px;border-radius: 5px;}
 
+/* Edit task page */
+#edit-task_form{width: 100%;padding: 0px 5px;display: flex;}
+#edit-task_form .container{width: 600px;margin: auto;margin-top: 20px;}
+#edit-task_form .container small{display: block;color: #8E8E8E;padding-bottom: 10px;border-bottom: 0.5px solid #BFBFBF;margin-bottom: 30px;}
+#edit-task_form label{font-weight: 900;}
+#edit-task_form label span{font-weight: 100;}
+#edit-task_form .container input[type="text"]{display: block;width: 100%;margin-bottom: 15px;padding: 5px 10px;border-radius: 5px;font-family: "Source Sans Pro", sans-serif;font-size: 1rem;border: 1px solid #BFBFBF;background-color: rgba(250,250,250);}
+#edit-task_form .container textarea{display: block;width: 100%;margin-bottom: 15px;padding: 5px 10px;border-radius: 5px;font-family: "Source Sans Pro", sans-serif;font-size: 1rem;border: 1px solid #BFBFBF;background-color: rgba(250,250,250);height: 200px;resize: vertical;}
+#edit-task_form .container input[type="submit"]{display: inline-block;border: 1px solid #BFBFBF;background-color: #8BC34A;color: white;font-size: 1rem;font-weight: 900;padding: 15px;border-radius: 5px;}
+#remove-task_form{width: 100%;display: flex;}
+#remove-task_form{width: 600px;margin: auto;margin-top: 20px;}
+#remove-task_form .container input.removeBtn{color: white;text-decoration: none;border: 1px solid #BFBFBF;background-color: #E57A78;color: white;font-size: 1rem;font-weight: 900;padding: 15px;border-radius: 5px;}
+
+/* Usersettings page */
+.usersettings{width: 100%;padding: 0px 5px;height: calc(100vh - 53px);display: flex;}
+.usersettings .container{width: 600px;margin: 20px auto;}
+.usersettings .container input[type="text"]{display: block;width: 100%;margin-bottom: 15px;padding: 5px 10px;border-radius: 5px;font-family: "Source Sans Pro", sans-serif;font-size: 1rem;border: 1px solid #BFBFBF;background-color: rgba(250,250,250);}
+.usersettings .container input[type="password"]{display: block;width: 100%;margin-bottom: 15px;padding: 5px 10px;border-radius: 5px;font-family: "Source Sans Pro", sans-serif;font-size: 1rem;border: 1px solid #BFBFBF;background-color: rgba(250,250,250);}
+.usersettings .container input[type="submit"]{display: inline-block;border: 1px solid #BFBFBF;background-color: #8BC34A;color: white;font-size: 1rem;font-weight: 900;padding: 15px;border-radius: 5px;}
+.usersettings .container small{display: block;color: #8E8E8E;padding-bottom: 10px;border-bottom: 0.5px solid #BFBFBF;margin-bottom: 30px;}
+.usersettings .container figure.userpicture{width: 200px;height: 200px;margin: auto;margin-bottom: 20px;}
+.usersettings .container figure.userpicture img{width: 100%;height: 100%;}
+.usersettings .container form#user_change-name{width: 100%;}
+.usersettings .container form#user_change-password{margin: 20px 0;}
+.usersettings .container form#user_change-password h3{}
+.usersettings .container form#user_change-password small{border-bottom: 0px;margin-bottom: 0px;}
+.usersettings .container .premium-promo{margin: 50px 0;}
+.usersettings .container .user_remove-account{color: white;text-decoration: none;border: 1px solid #BFBFBF;background-color: #E57A78;color: white;font-size: 1rem;font-weight: 900;padding: 15px;border-radius: 5px;display: inline-block;cursor: pointer;}
+.usersettings .container .user_remove-account i{margin-right: 5px;}
 
 @media only screen and (max-width: 600px) {
-    /* General */
-    .back-arrow{color: #E57A78;text-shadow: 0 1px 5px #000000;position: absolute;left: 0;top: 0;width: 50px;height: 50px;text-align: center;}
-    .back-arrow i{margin: auto;font-size: 2rem;line-height: 50px;}
-    .action-button{width: 50px;height: 50px;}
-    .action-button a i{font-size: 1rem;}
-
-    /* Dashboard page */
-    .dashboard_header{height: 25vh;padding: 20px 70px 30px 70px;}
-    .dashboard_header small{font-size: 0.8rem;}
-    .dashboard_header .dashboard_timing{margin-top: -5px;}
-    .dashboard_header .dashboard_timing .numbers{font-size: 1.2rem;}
-    .dashboard_header .dashboard_timing .text{font-size: 0.8rem;}
-    .dashboard_header .dashboard_project-add{width: 60px;height: 60px;}
-    .dashboard_header .dashboard_project-add a i{font-size: 1rem;}
+    /* Navigation */
+    aside.nav{position: absolute;left: -230px;}
     
-    .output-list{width: 100%;height: 75vh;position: absolute;bottom: 0;z-index: 1;overflow: scroll;}
-    .output-list ul{background-color: #FFFFFF;list-style: none;padding: 0;display: block;}
-    .output-list ul li{width: 100%;height: 50px;padding: 10px 20px;display: flex;border-bottom: 0.5px solid #D4D4D4;box-shadow: none;margin: 0;}
-    .output-list ul li.no_projects{height: auto;font-size: 0.8rem;font-weight: 300;}
-    .output-list ul li:hover{background-color: #D4D4D4;}
-    .output-list ul li a{display: block;width: 100%;display: flex;}
-    .output-list ul li a p{display: inline-block;margin: auto;margin-left: 0px;font-size: 1rem;}
-    .output-list ul li a p i{display: inline-block;}
-    .output-list ul li a small.dashboard_project-timing{display: inline-block;margin: auto;margin-right: 0px;}
-    .output-list ul li a small.dashboard_project-timing .numbers{font-size: 0.8rem;}
-    .output-list ul li a small.dashboard_project-timing .text{font-size: 0.6rem;font-weight: 300;}
+    /* Toolbar */
+    .toolbar{display: flex;position: absolute;top: 0;left: 0;right: 0;z-index: 2;}
+    
+    /* Main */
+    main{width: 100%;position: relative;padding-top: 53px;}
+    
+    /* Projects page */
+    ul.output-grid{}
+    ul.output-grid li{width: 100%;height: 60px;}
+    ul.output-grid li a.output-grid-item{display: flex;flex-direction: row;}
+    ul.output-grid li a.output-grid-item span.total-timing{margin: auto;margin-left: 0px;order: 2;border-bottom: none;padding-bottom: 0px;margin-bottom: 0px;font-size: 1rem;text-align: right;width: 50%;}
+    ul.output-grid li a.output-grid-item span.total-timing i{font-size: 1rem;text-shadow: none;}
+    ul.output-grid li a.output-grid-item p.title{margin: auto;margin-right: 0px;order: 1;font-size: 1.2rem;width: 100%;}
+    ul.output-grid li a.output-grid-item small.description{display: none;}
+    ul.output-grid li:hover a.editBtn{display: none;}
+    ul.output-grid li.create-new{}
+    ul.output-grid li.create-new a{text-decoration: none;}
+    ul.output-grid li.create-new a i{margin-left: 0px;padding: 0px;font-size: 1.5rem;margin-bottom: auto;border: 0px;width: 40px;}
+    ul.output-grid li.create-new a p{margin: auto;margin-left: 0px;text-align: left;width: calc(100% - 40px);}
 
-    /* Project page */
-    .project_header{height: 25vh;padding: 10px 70px 10px 70px;}
-    .project_header small{font-size: 0.8rem;}
-    .project_header .project_timing{margin-left: 0;margin-top: -5px;}
-    .project_header .project_timing .numbers{font-size: 1.2rem;}
-    .project_header .project_timing .text{font-size: 0.8rem;}
-    .project_header h2{text-align: center;width: 100%;margin: auto;margin-bottom: 5px;}
+    /* Project page header */
+    .project_header{flex-wrap: wrap;}
+    .project_header .left{width: 100%;}
+    .project_header .right{width: 100%;padding-top: 0px;}
+    
+    /* Task actions */
+    .actions{width: 100%;margin: 10px 0;display: flex;}
+    .actions .start-new{margin: auto;}
+    .actions .stop-new{margin: auto;}
+    .actions .create-new{margin: auto;}
 }

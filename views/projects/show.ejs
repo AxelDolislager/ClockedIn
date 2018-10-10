@@ -1,64 +1,178 @@
 <html>
     <% include ../partials/header %>
     <body>
-        <header class="project_header">
-            <a href="/projects" class="back-arrow"><i class="fa fa-angle-left fa-2x back-arrow"></i></a>
-            <h2><%= project.projectName%></h2>
-            <small>Total time spend</small>
-            <div class="project_timing">
-                <span class="numbers"><%=Math.floor( project.totalTimeSpend / 86400)%> </span><span class="text">days</span>
-                <span class="numbers"><%=Math.floor(( project.totalTimeSpend % 86400) / 3600)%> </span><span class="text">hours</span>
-                <span class="numbers"><%=Math.floor(( project.totalTimeSpend  % 3600) / 60)%> </span><span class="text">minutes</span>
-            </div>
-            <small class="project_last-timing">
-                last input: 
-                <span class="project_last-timing-content">00H00M00S</span>
-            </small>
-            <div class="action-button bottom-left">
-                    <a href="#"><i class="fa fa-clock fa-2x"></i></a>
+        <% include ../partials/navigation %>
+        <main>
+            <header class="toolbar">
+                <div class="backBtn"><a href="/projects"><i class="fa fa-chevron-left "></i></a></div>
+                <div class="editBtn"><a href="/projects/<%= project._id %>/edit"><i class="fa fa-cog"></i></a></div>
+            </header>
+            <div class="project_header">
+                <div class="left">
+                    <h2><%= project.projectName %></h2>
+                    <small><%= project.projectDescription %></small>
                 </div>
-            <div class="action-button bottom-right">
-                <a href="/projects/<%= project._id %>/tasks/new"><i class="fa fa-plus fa-2x"></i></a>
+                <div class="right">
+                    <small>Total time spend: </small>
+                    <div class="project_timing">
+                        <span class="numbers"><%=Math.floor( project.totalTimeSpend / 86400)%></span><span class="text">days</span>
+                        <span class="numbers"><%=Math.floor(( project.totalTimeSpend % 86400) / 3600)%></span><span class="text">hours</span>
+                        <span class="numbers"><%=Math.floor(( project.totalTimeSpend  % 3600) / 60)%></span><span class="text">minutes</span>
+                    </div>
+                </div>
             </div>
-        </header>
-        <main class="output-list">
-            <ul>
-                <li>
-                    <a href="#">
-                        <p>Date(or description) <i class="fa fa-pencil edit-icon"></i></p>
-                        <small class="dashboard_project-timing">
-                            <span class="numbers">01</span><span class="text">hours</span>
-                            <span class="numbers">07</span><span class="text">minutes</span>
-                        </small>
+            <div class="actions">
+                <div class="start-new">
+                    <i class="fa fa-play"></i>Start a new task!
+                </div>
+                <div class="stop-new">
+                    <i class="fa fa-stop"></i>Stop your new task!
+                </div>
+                <div class="create-new">
+                    <a href="/projects/<%= project._id %>/tasks/new">
+                        <i class="fa fa-plus"></i>Insert a new task!
                     </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <p>Date(or description)</i></p>
-                        <small class="dashboard_project-timing">
-                            <span class="numbers">04</span><span class="text">hours</span>
-                            <span class="numbers">29</span><span class="text">minutes</span>
-                        </small>
-                    </a>
+                </div>
+            </div>
+            <ul class="output-list">
+                <li class="current-timing">
+                    <input type="text" placeholder="Task description(optional)" name="task-title">
+                    <span class="current-timing">
+                        <i class="fa fa-clock"></i>
+                        <span id='current-timing_value'>00M 00S</span>
+                    </span>
                 </li>
                 <% if(project.tasks.length > 0){
                     project.tasks.forEach(function(task){ %>
-                        <li>
-                            <a href="#">
-                                <p><% if(task.description.length > 0){%> <%=task.description%><% }else{ %><%=task.startTime.toLocaleString()%><% } %></p>
-                                <small class="dashboard_project-timing">
-                                    <span class="numbers"><%=Math.floor(( task.duration % 86400) / 3600)%></span><span class="text">hours</span>
-                                    <span class="numbers"><%=Math.floor(( task.duration  % 3600) / 60)%></span><span class="text">minutes</span>
-                                </small>
-                            </a>
-                        </li>
-                    <% })
+                <li>
+                    <a class="output-list-item" href="/projects/<%= project._id %>">
+                        <span class="description"><%= task.description %></span>
+                        <span class="total-timing"><i class="fa fa-clock"></i>
+                            <% if(Math.floor( task.duration / 86400) > 0){%>
+                                <%= Math.floor(( task.duration % 86400) / 3600)%>D
+                            <% } %>
+                            <% if(Math.floor((task.duration % 86400) / 3600) <= 9 ){ %>0<% } %><%= Math.floor(( task.duration % 86400) / 3600) %>H <% if(Math.floor((task.duration % 3600) / 60) <= 9 ){ %>0<% } %><%=Math.floor(( task.duration  % 3600) / 60)%>M <% if(Math.floor((task.duration % 3600) % 60) <= 9){ %>0<% } %><%= Math.floor((task.duration % 3600) % 60) %>S
+                        </span>
+                    </a>
+                    <a class="editBtn" href="/projects/<%= project._id %>/tasks/<%= task._id %>/edit"><i class="fa fa-cog"></i></a>
+                </li>
+                <% })
                 } else {%>
-                    <li class="no_projects">
-                        <p>You don't have any project setup yet. Please click the '+' button to create your first project!</p>
+                    <li class="create-new">
+                        <a class="output-list-item" href="/projects/<%= project._id %>/tasks/new">
+                            <i class="fa fa-plus fa-2x"></i>
+                            <p>We see you don't have any tasks for this project setup yet. Click here to create one!</p>
+                        </a>
                     </li>
                 <% } %>
             </ul>
+            
+            <script>
+                $(".start-new").click(function(){
+                    $(this).hide();
+                    $(".stop-new").css({"display": "inline-block"});
+                    $(".current-timing").css({"display": "flex"});
+                    
+                    localStorage.setItem("projectTimestamp<%= project._id %>", new Date());
+                    
+                    timerStarts();
+                });
+                if(localStorage.projectTimestamp<%= project._id %>){
+                    $(".start-new").hide();
+                    $(".stop-new").css({"display": "inline-block"});
+                    $(".current-timing").css({"display": "flex"});
+                    
+                    timerStarts();
+                }
+                $(".stop-new").click(function(){
+                    $(this).hide();
+                    $(".start-new").show();
+                    $(".current-timing").hide();
+                    
+                    var params = {
+                        "create_task_start_time": new Date(localStorage.projectTimestamp<%= project._id %>),
+                        "create_task_end_time": new Date(),
+                        "create_task_desc": $("input[name='task-title']").val()
+                    };
+                    $.post("/projects/<%= project._id %>/tasks", params, function(data){
+                        console.log("worked!");
+                        location.reload(); 
+                    });
+                    
+                    localStorage.removeItem("projectTimestamp<%= project._id %>");
+                });
+                
+                function twoDigits(timing){
+                    if(timing <= 9){
+                        return "0" + timing;
+                    }else{
+                        return timing;
+                    }
+                }
+                
+                //timer
+                function timerStarts(data){
+                    currentTimestampRunning = new Date(localStorage.projectTimestamp<%= project._id %>);
+                    var x = setInterval(function(){
+                        var now = new Date();
+                        var difference = now - currentTimestampRunning;
+                        
+                        var minutes = twoDigits(new Date(1000*Math.round(difference/1000)).getUTCMinutes());
+                        var seconds = twoDigits(new Date(1000*Math.round(difference/1000)).getUTCSeconds());
+                        
+                        document.getElementById("current-timing_value").innerHTML = minutes + "M " + seconds + "S";
+                        
+                    },1000);
+                }
+                
+                
+            /*
+            BACKUP!!!
+                $(".start-new").click(function(){
+                    $(this).hide();
+                    $(".stop-new").css({"display": "inline-block"});
+                    $(".current-timing").css({"display": "flex"});
+                    localStorage.setItem("projectTimestamp", new Date());
+                    timerStarts();
+                });
+                if(localStorage.projectTimestamp){
+                    $(".start-new").hide();
+                    $(".stop-new").css({"display": "inline-block"});
+                    $(".current-timing").css({"display": "flex"});
+                    timerStarts();
+                }
+                $(".stop-new").click(function(){
+                    $(this).hide();
+                    $(".start-new").show();
+                    $(".current-timing").hide();
+                    localStorage.removeItem("projectTimestamp");
+                });
+                
+                function twoDigits(timing){
+                    if(timing <= 9){
+                        return "0" + timing;
+                    }else{
+                        return timing;
+                    }
+                }
+                
+                //timer
+                function timerStarts(){
+                    currentTimestampRunning = new Date(localStorage.projectTimestamp);
+                    var x = setInterval(function(){
+                        var now = new Date();
+                        var difference = now - currentTimestampRunning;
+                        
+                        var minutes = twoDigits(new Date(1000*Math.round(difference/1000)).getUTCMinutes());
+                        var seconds = twoDigits(new Date(1000*Math.round(difference/1000)).getUTCSeconds());
+                        
+                        document.getElementById("current-timing_value").innerHTML = minutes + ":" + seconds;
+                        
+                    },1000);
+                }
+                */
+            </script>
+            <% include ../partials/footer %>
         </main>
     </body>
 </html>

@@ -1,0 +1,57 @@
+<!--
+- Usersettings
+-- Change Profile picture
+-- Change Name
+-- Change password
+-- Remove accound
+- Premium
+-->
+<html>
+    <% include ../partials/header %>
+    <body>
+        <% include ../partials/navigation %>
+        <header class="toolbar">
+            <div class="navToggle"><i class="fa fa-bars"></i></div>
+        </header>
+        <main>
+            <div class="usersettings">
+                <div class="container">
+                    <h2>Settings</h2>
+                    <small>Well this is dissapointing... We don't really have a lot of settings for you yet. But we're working on it!</small>
+                    
+                    <figure class="userpicture">
+                        <img src="#">
+                    </figure>
+                    
+                    <form id="user_change-name">
+                        <input type="text" value="<%= currentUser.fullname %>">
+                    </form>
+                    
+                    <div class="premium-promo">
+                        <!-- Check if premium -->
+                        <h3>Go for premium!</h3>
+                        Premium promo!
+                    </div>
+                    
+                    <form id="user_change-password">
+                        <h3>Change password</h3>
+                        <small>Leave this blank if you don't want to change your password!</small>
+                        
+                        <label for="old-password">Current password: </label>
+                        <input type="password" id="old-password">
+                        
+                        <label for="new-password">New password: </label>
+                        <input type="password" id="new-password">
+                        
+                        <label for="repeat_new-password">Repeat new password: </label>
+                        <input type="password" id="repeat_new-password">
+                        
+                        <input type="submit" value="Change password" class="chpassBtn">
+                    </form>
+                    
+                    <div class="user_remove-account"><i class="fa fa-trash"></i> Remove account</div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
