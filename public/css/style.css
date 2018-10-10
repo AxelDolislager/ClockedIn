@@ -3,6 +3,8 @@
 /* General */
 *{margin: 0px;box-sizing: border-box;}
 body{background-color: white;font-family: 'Source Sans Pro', sans-serif;}
+.alert{padding: 5px;margin-bottom: 5px;}
+
 
 /* Login & Register pages */
 .startbackground{background-image: url("../images/background.png");background-repeat: no-repeat;background-attachment: fixed;background-position: center;background-size: cover;}
@@ -176,7 +178,7 @@ ul.output-list li.current-timing span.current-timing i{color: #E57A78;}
 .usersettings .container small{display: block;color: #8E8E8E;padding-bottom: 10px;border-bottom: 0.5px solid #BFBFBF;margin-bottom: 30px;}
 .usersettings .container figure.userpicture{width: 200px;height: 200px;margin: auto;margin-bottom: 20px;}
 .usersettings .container figure.userpicture img{width: 100%;height: 100%;}
-.usersettings .container form#user_change-name{width: 100%;}
+.usersettings .container h2.fullname{width: 100%;text-align: center;}
 .usersettings .container form#user_change-password{margin: 20px 0;}
 .usersettings .container form#user_change-password h3{}
 .usersettings .container form#user_change-password small{border-bottom: 0px;margin-bottom: 0px;}
