@@ -63,8 +63,8 @@ router.get("/:id2/edit", function(req, res){
             console.log(err)
         }else{
             //set everything to a 2 digit number!
-            var startTimeFormat = twoDigits(new Date(task.startTime).getFullYear()) + "/" + twoDigits(new Date(task.startTime).getMonth()) + "/" + twoDigits(new Date(task.startTime).getDay()) + " " + twoDigits(new Date(task.startTime).getHours()) + ":" + twoDigits(new Date(task.startTime).getMinutes()) + ":" + twoDigits(new Date(task.startTime).getSeconds());
-            var endTimeFormat = twoDigits(new Date(task.endTime).getFullYear()) + "/" + twoDigits(new Date(task.endTime).getMonth()) + "/" + twoDigits(new Date(task.endTime).getDay()) + " " + twoDigits(new Date(task.endTime).getHours()) + ":" + twoDigits(new Date(task.endTime).getMinutes()) + ":" + twoDigits(new Date(task.endTime).getSeconds());
+            var startTimeFormat = twoDigits(new Date(task.startTime).getFullYear()) + "/" + twoDigits(new Date(task.startTime).getMonth() + 1) + "/" + twoDigits(new Date(task.startTime).getDay() - 1) + " " + twoDigits(new Date(task.startTime).getHours() + 1) + ":" + twoDigits(new Date(task.startTime).getMinutes() + 1) + ":" + twoDigits(new Date(task.startTime).getSeconds());
+            var endTimeFormat = twoDigits(new Date(task.endTime).getFullYear()) + "/" + twoDigits(new Date(task.endTime).getMonth() + 1) + "/" + twoDigits(new Date(task.endTime).getDay() - 1) + " " + twoDigits(new Date(task.endTime).getHours() + 1) + ":" + twoDigits(new Date(task.endTime).getMinutes() + 1) + ":" + twoDigits(new Date(task.endTime).getSeconds());
             
             res.render("tasks/edit", {projectId: req.params.id, task: task, taskStartTime: startTimeFormat, taskEndTime: endTimeFormat, current_page: "none"})
         }

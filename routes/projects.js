@@ -1,10 +1,11 @@
 var express         = require("express");
 var router          = express.Router();
 var Project         = require("../models/project");
+var middleware      = require("../middleware")
 var methodOverride  = require("method-override");
 
 //INDEX - show all projects from a user
-router.get("/", function(req, res){                             //isloggedin
+router.get("/", middleware.isLoggedIn, function(req, res){                  
   // Get all projects from the user from DB
   Project.find({"author.username": req.user.username}, function(err, allProjects){
      if(err){
@@ -16,7 +17,7 @@ router.get("/", function(req, res){                             //isloggedin
 });
 
 //CREATE - add new project to DB
-router.post("/", function(req, res){
+router.post("/", middleware.isLoggedIn, function(req, res){
   var projectName = req.body.add_project_name
   var projectDescription = req.body.add_project_description
   var author = {
@@ -34,12 +35,12 @@ router.post("/", function(req, res){
 });
 
 //NEW - show form to create new project 
-router.get("/new", function(req, res){
+router.get("/new", middleware.isLoggedIn, function(req, res){
    res.render("projects/new", {current_page: "none"}); 
 });
 
 // SHOW - shows more info about one project
-router.get("/:id", function(req, res){
+router.get("/:id", middleware.checkProjectOwnership, function(req, res){
     //find the project with provided ID
     Project.findById(req.params.id).populate("tasks").exec(function(err, project){
         if(err){
@@ -52,7 +53,7 @@ router.get("/:id", function(req, res){
 });
 
 // EDIT - shows edit form for a project
-router.get("/:id/edit", function(req, res){
+router.get("/:id/edit", middleware.checkProjectOwnership, function(req, res){
     Project.findById(req.params.id, function(err, project){
         if(err){
             console.log(err)
@@ -63,7 +64,7 @@ router.get("/:id/edit", function(req, res){
 });
 
 // PUT - updates project in the database
-router.put("/:id", function(req, res){
+router.put("/:id", middleware.checkProjectOwnership, function(req, res){
     console.log("Editing project.");
     console.log(req.body);
     
@@ -80,7 +81,7 @@ router.put("/:id", function(req, res){
 });
 
 // DELETE - removes project and its tasks from the database
-router.delete("/:id", function(req, res) {
+router.delete("/:id", middleware.checkProjectOwnership, function(req, res) {
     Project.findByIdAndRemove(req.params.id, function(err){
         if(err){
             res.redirect("/projects/" + req.params.id + "/edit");

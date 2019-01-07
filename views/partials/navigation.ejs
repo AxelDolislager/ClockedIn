@@ -1,29 +1,15 @@
 <aside class="nav">
     <div class="userinformation">
         <figure class="userpicture">
-            <img src="#">
+            <img src="/images/logo-icon-white.svg">
         </figure>
         <span class="fullname"><%= currentUser.fullname %></span>
-        <div class="usertime">
-            <small>Total time spend: </small>
-            <%  
-                var totalTime = 999999;
-                //var totalTime = 0
-                //projects.forEach(function(project){
-                    //totalTime += project.totalTimeSpend
-                //})
-            %>
-            
-            <div class="timing first"><span class="numbers"><%=Math.floor( totalTime / 86400)%></span><span class="text"> days</span></div>
-            <div class="timing"><span class="numbers"><%=Math.floor(( totalTime % 86400) / 3600)%></span><span class="text"> hours</span></div>
-            <div class="timing last"><span class="numbers"><%=Math.floor(( totalTime  % 3600) / 60)%></span><span class="text"> minutes</span></div>
-        </div>
     </div>
     <nav>
         <a href="/projects" <% if(current_page == "home"){%> class="active" <% } %>><i class="fa fa-home"></i><span>Home</span></a>
         <a href="/settings" <% if(current_page == "settings"){%> class="active" <% } %>><i class="fa fa-cog"></i><span>Settings</span></a>
         <a href="/logout"><i class="fa fa-sign-out"></i><span>Signout</span></a>
-        <a href="/"><i class="fa fa-flag"></i><span>Give us feedback!</span></a>
+        <a href="https://goo.gl/forms/Ak934D9QnJRW2DGm2"><i class="fa fa-flag"></i><span>Give us feedback!</span></a>
     </nav>
     <!--<div class="bottom-item">
         Current subscription? Free/Premium Upgrade now!

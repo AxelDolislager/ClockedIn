@@ -47,7 +47,7 @@
                 <li>
                     <a class="output-list-item" href="/projects/<%= project._id %>">
                         <span class="description"><%= task.description %></span>
-                        <span class="total-timing"><i class="fa fa-clock"></i>
+                        <span class="total-timing"></span><i class="fa fa-clock"></i>
                             <% if(Math.floor( task.duration / 86400) > 0){%>
                                 <%= Math.floor(( task.duration % 86400) / 3600)%>D
                             <% } %>
@@ -66,8 +66,9 @@
                     </li>
                 <% } %>
             </ul>
-            
+            <!--<%= project %>-->
             <script>
+            
                 $(".start-new").click(function(){
                     $(this).hide();
                     $(".stop-new").css({"display": "inline-block"});

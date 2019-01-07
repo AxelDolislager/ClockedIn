@@ -1,9 +1,6 @@
 # Todo
 
 ## Managment
- - (*)!! App Name "clockedin.app"
- - Manifest (todo: icons) (A) 2
- - Logo design (A) 1
 
 ## Front End
  - Landing page (A) 3
@@ -11,7 +8,6 @@
 ## Back End
  - Authorization MiddleWare (R)
  - OwnerShip Middleware (R)
- - Add user time spend(For navigation menu) (R)
 
  - User Management (A/R)
  -- Change password
@@ -23,11 +19,10 @@
  - Error Handling (A: design) 0
 
 ## BUGS
+ - edit changes dates
 
 ## PRE-LAUNCH!!
- - THINK OF A DAMN APPLICATION NAME!!!
  - Terms of Agreement/Terms of Policy/Cookies/... (A) 0
- - SEO - Landing Page (Open Graph Protocol)
  - Social Media Marketing?
 
 ## PAST-LAUNCH

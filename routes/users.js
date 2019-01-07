@@ -1,7 +1,8 @@
-var express = require("express")
-var router = express.Router()
-var User = require("../models/user");
-var passport = require("passport")
+var express     = require("express")
+var router      = express.Router()
+var User        = require("../models/user");
+var middleware  = require("../middleware")
+var passport    = require("passport")
 
 //Show Login Form
 router.get("/login", function(req, res) {
@@ -49,15 +50,44 @@ router.post('/register', function(req, res) {
 })
 
 //Logout
-router.get("/logout", function(req, res){
+router.get("/logout", middleware.isLoggedIn, function(req, res){
    req.logout();
 //   req.flash("success", "See you later!");
    res.redirect("/");
 });
 
 //Usersettings
-router.get("/settings", function(req, res){
+router.get("/settings", middleware.isLoggedIn, function(req, res){
     res.render("users/settings", {current_page: "settings"});
+})
+
+
+//Change Password
+router.post("/settings/password", middleware.isLoggedIn, function(req, res){
+    //changePassword(oldPassword, newPassword, [cb])
+    User.findById(req.user._id, function(err, foundUser){
+        if(err){
+            console.log(err)
+            //TODO flash
+            res.redirect("/settings");
+        } else {
+            if(req.body.new_password == req.body.repeat_new_password){
+                foundUser.changePassword(req.body.old_password, req.body.new_password, function(err){
+                    if (err){
+                        console.log(err)
+                        // TODO Flash Error
+                        console.log("Cant change password")
+                        res.redirect("/settings");
+                    }
+                    res.redirect("/settings");
+                })
+            } else {
+                // TODO flash passwords don't match
+                console.log("Passwords don't match")
+                res.redirect("/settings");
+            }
+        }
+    })
 })
 
 module.exports = router;
