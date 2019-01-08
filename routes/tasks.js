@@ -2,18 +2,19 @@ var express = require("express");
 var router  = express.Router({mergeParams: true});
 var Task = require("../models/task")
 var Project = require("../models/project")
+var middleware = require("../middleware")
 
-function twoDigits(timing){
-    if(timing <= 9){
-        return "0" + timing;
-    }else{
-        return timing;
-    }
+function datetimeFormat(datetime){
+    return datetime.getUTCFullYear() + "/" +
+    ("0" + (datetime.getUTCMonth()+1)).slice(-2) + "/" +
+    ("0" + datetime.getUTCDate()).slice(-2) + " " +
+    ("0" + datetime.getUTCHours()).slice(-2) + ":" +
+    ("0" + datetime.getUTCMinutes()).slice(-2) + ":" +
+    ("0" + datetime.getUTCSeconds()).slice(-2);
 }
 
 //CREATE - add new project to DB
-router.post("/", function(req, res){
-    console.log(req.body)
+router.post("/", middleware.checkProjectOwnership, function(req, res){
     Project.findById(req.params.id, function(err, project){
         if(err){
             console.log(err);
@@ -22,6 +23,11 @@ router.post("/", function(req, res){
             var timestamp = new Date();
             var startTime = new Date(req.body.create_task_start_time).getTime();
             var endTime   = new Date(req.body.create_task_end_time).getTime();
+            
+            console.log("INPUT")
+            console.log(startTime)
+            console.log(endTime)
+            
             if(startTime < endTime){
                 console.log("adding new task!");
                 var newTask = {
@@ -37,8 +43,8 @@ router.post("/", function(req, res){
                         project.totalTimeSpend = project.totalTimeSpend + task.duration;
                         project.tasks.push(task);
                         project.save();
-                        console.log(task);
-                        console.log(project);
+                        // console.log(task);
+                        // console.log(project);
                         res.redirect('/projects/' + req.params.id);
                     }
                 })
@@ -50,29 +56,38 @@ router.post("/", function(req, res){
 });
 
 //NEW - show form to create new task 
-router.get("/new", function(req, res){
+router.get("/new",  middleware.checkProjectOwnership, function(req, res){
     var projectId = req.params.id
     res.render("tasks/new", {projectId: projectId, current_page: "none"}); 
 });
 
 
 // EDIT - shows edit form for a task
-router.get("/:id2/edit", function(req, res){
+router.get("/:id2/edit",  middleware.checkProjectOwnership, function(req, res){
     Task.findById(req.params.id2, function(err, task){
         if(err){
             console.log(err)
         }else{
-            //set everything to a 2 digit number!
-            var startTimeFormat = twoDigits(new Date(task.startTime).getFullYear()) + "/" + twoDigits(new Date(task.startTime).getMonth() + 1) + "/" + twoDigits(new Date(task.startTime).getDay() - 1) + " " + twoDigits(new Date(task.startTime).getHours() + 1) + ":" + twoDigits(new Date(task.startTime).getMinutes() + 1) + ":" + twoDigits(new Date(task.startTime).getSeconds());
-            var endTimeFormat = twoDigits(new Date(task.endTime).getFullYear()) + "/" + twoDigits(new Date(task.endTime).getMonth() + 1) + "/" + twoDigits(new Date(task.endTime).getDay() - 1) + " " + twoDigits(new Date(task.endTime).getHours() + 1) + ":" + twoDigits(new Date(task.endTime).getMinutes() + 1) + ":" + twoDigits(new Date(task.endTime).getSeconds());
+            console.log("\nDATA FROM DB")
+            console.log(task.startTime)
+            console.log(task.endTime)
+            
+            //set everything to a 2 digit number! but why?
+            var startTimeFormat = datetimeFormat(task.startTime)
+            var endTimeFormat = datetimeFormat(task.endTime)
+            
+            console.log("\nCONVERSION")
+            console.log(startTimeFormat)
+            console.log(endTimeFormat)
             
             res.render("tasks/edit", {projectId: req.params.id, task: task, taskStartTime: startTimeFormat, taskEndTime: endTimeFormat, current_page: "none"})
         }
+        
     });
 });
 
 //PUT - edit's a task
-router.put("/:id2", function(req, res){
+router.put("/:id2",  middleware.checkProjectOwnership, function(req, res){
     //get project by id
     var duration = 0;
     
@@ -86,6 +101,10 @@ router.put("/:id2", function(req, res){
             Task.findById(req.params.id2, function(err, task){
                 //totalprojecttime - tasktime
                 var totalTimeWOEditTask = project.totalTimeSpend - task.duration;
+                
+                console.log("\nRECEIVED AT EDIT")
+                console.log(req.body.edit_task_start_time)
+                console.log(req.body.edit_task_end_time)
                 
                 //edit task
                 task.set({
@@ -107,7 +126,7 @@ router.put("/:id2", function(req, res){
 });
 
 //DELETE - delete's task from database
-router.delete("/:id2", function(req, res){
+router.delete("/:id2",  middleware.checkProjectOwnership, function(req, res){
     //get task duration
     var duration = 0;
     
